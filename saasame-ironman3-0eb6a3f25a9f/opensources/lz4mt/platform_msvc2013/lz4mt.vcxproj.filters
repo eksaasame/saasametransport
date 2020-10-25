@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\lz4mt.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\lz4mt_benchmark.cpp" />
+    <ClCompile Include="..\src\lz4mt_io_cstdio.cpp" />
+    <ClCompile Include="..\src\lz4mt_xxh32.cpp" />
+    <ClCompile Include="..\src\lz4mt_mempool.cpp" />
+    <ClCompile Include="..\src\lz4mt_compat.cpp" />
+    <ClCompile Include="..\src\lz4mt_result.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\lz4mt.h" />
+    <ClInclude Include="..\src\lz4mt_benchmark.h" />
+    <ClInclude Include="..\src\lz4mt_io_cstdio.h" />
+    <ClInclude Include="..\src\lz4mt_xxh32.h" />
+    <ClInclude Include="..\src\lz4mt_mempool.h" />
+    <ClInclude Include="..\src\lz4mt_compat.h" />
+  </ItemGroup>
+</Project>

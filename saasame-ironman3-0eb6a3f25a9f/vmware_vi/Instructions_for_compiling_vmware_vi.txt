@@ -1,0 +1,90 @@
+//********** Instructions for compiling vSphere GSOAP Stubs *****************//
+
+1. Download GSOAP 2.8.2
+2. Download vSphere SDK
+3. Create a directory "Stub_Generation"
+4. Copy the vShphere web services wsdl files \vim25\vimService.wsdl, vim.wsdl and any *.xsd files to "Stub_Generation\"
+5. Copy ~\gsoap_2.8.2\gsoap-2.8\gsoap\stdsoap2.cpp, stdsoap2.h and typemap.dat to "Stub_Generation\"
+6. Copy ~\gsoap_2.8.2\gsoap-2.8\gsoap\bin\win32\wsdl2h.exe and stdsoap2.exe to "Stub_Generation\"
+7. [Create stdsoap2 DLL - not needed for SanVI] Create directory "Stub_Generation\stdsoap2\"
+8. [Create stdsoap2 DLL - not needed for SanVI] Copy stdsoap2.exe to this directory 
+9. [Create stdsoap2 DLL - not needed for SanVI] Create empty file env.h in directory "Stub_Generation\stdsoap2\"
+	>cd ~\Stub_Generation\stdsoap2\
+	>soapcpp2 -penv env.h
+		This generates envC.cpp, envH.h and envStub.h
+10. >cd ~\Stub_Generation
+11. Edit typemap.dat and add the line "xsd__string = | std::wstring". Save and close.
+12. >wsdl2h -x vimService.wsdl
+	This generates the file vimService.h
+13. >stdsoap2 -C -x -I"~\gsoap\import" vimService.h
+	This generates the following files
+	soapC.cpp, soapClient.cpp, soapClientLib.cpp, soapH.h, soapStub.h, soapVimBindingProxy.h and vimBinding.nsmap
+14. [Create stdsoap2 DLL - not needed for SanVI] Create a project (dll) named stdsoap2 in ~\wincommon
+	Add envH.h, envStub.h, stdsoap2.h, envC.cpp, stdsoap2.cpp
+	In project properties->C++ do the following
+		Add following preprocessor directives 
+			WITH_NONAMESPACES
+			WITH_COOKIES
+			WITH_OPENSSL
+			SOAP_FMAC1=__declspec(dllexport)
+			SOAP_FMAC3=__declspec(dllexport)
+		Additional Include directories
+			~\IMA\current\src\include
+	In peoject properties->Linker
+		Additional Library directories
+			~wincommon\Lib$(ConfigurationName)$(PlatformName)
+		Input
+			libeay32.lib ssleay32.lib
+	Post Build events
+		if not exist ..\Lib$(ConfigurationName)$(PlatformName) mkdir ..\Lib$(ConfigurationName)$(PlatformName)
+		copy  "$(TargetDir)$(TargetName).dll"      ..\Lib$(ConfigurationName)$(PlatformName)
+		copy  "$(TargetDir)$(TargetName).lib"      ..\Lib$(ConfigurationName)$(PlatformName)
+	Build the project (This should copy stdsoap2.dll and .lib in ~\wincommon\Lib$(ConfigurationName)$(PlatformName)\
+15. Create or edit the project (dll) named SanVI in ~\wincommon
+	Add or update soapH.h, soapStub.h, soapVimBindingProxy.h, soapC.cpp, soapClient.cpp, soapClientLib.cpp
+
+	If editing an existing project:
+	Add the line #include "SanVIDefs.h" before #include "stdsoap2.h" in soapStub.h
+
+	If creating a new project:
+	Add SanVIDefs.h
+		
+		#ifndef SANVIDEFS_H
+		#define SANVIDEFS_H
+
+		#ifdef SANVI_EXPORTS
+		#define SANVI_API __declspec(dllexport)
+		#else
+		#define SANVI_API __declspec(dllimport)
+		#endif
+
+		#define SOAP_FMAC1      SANVI_API
+		#define SOAP_FMAC5      SANVI_API
+		#define SOAP_CMAC       SANVI_API
+
+		#endif
+	Mark soapC.cpp and soapClient.cpp as "Excluded from build"
+	In project properties->C++ do the following
+		Additional Include Directories 
+			..\stdsoap2;~\IMA\current\src\include
+		Add following preprocessor directives 
+			WITH_OPENSSL
+			WITH_COOKIES
+		Add Command Line 
+			/bigobj
+	In peoject properties->Linker
+		Additional Library Directories
+			~wincommon\Lib$(ConfigurationName)$(PlatformName)
+		Input
+			stdsoap2.lib libeay32.lib ssleay32.lib
+	Post Build Events
+		if not exist ..\Lib$(ConfigurationName)$(PlatformName) mkdir ..\Lib$(ConfigurationName)$(PlatformName)
+		copy  "$(TargetDir)$(TargetName).dll"      ..\Lib$(ConfigurationName)$(PlatformName)
+		copy  "$(TargetDir)$(TargetName).lib"      ..\Lib$(ConfigurationName)$(PlatformName)
+	Build the project (This should copy SanVI.dll and .lib in ~\wincommon\Lib$(ConfigurationName)$(PlatformName)\
+
+16. Compile SanMFCClasses and SanHypervisor with stdsoap2.lib and SanVI.lib
+
+NOTE: On MSVC 2005 compile the release version without optimizations (otherwise the linker does not work)
+
+

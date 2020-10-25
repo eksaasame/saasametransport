@@ -1,0 +1,303 @@
+/* Common style */
+.grid {
+	margin: 40px auto 120px;
+	max-width: 1000px;
+	width: 90%;
+}
+
+.grid a {
+	color: #333;
+}
+
+.index_link
+{
+	float: left;
+	max-width: 250px;
+	width: 25%;
+	color: #333;
+}
+
+.grid a:nth-child(odd) {
+	/*margin: 30px 0 -30px 0;*/
+	margin: 0 0 0 0;
+}
+
+.grid figure {
+	position: relative;
+	overflow: hidden;
+	margin: 5px;
+	background: #333;
+}
+
+.grid figure img {
+	position: relative;
+	display: block;
+	width: 100%;
+	opacity: 0.7;
+	-webkit-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.grid figcaption {
+	position: absolute;
+	top: 0;
+	z-index: 11;
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.grid figcaption h2 {
+	margin: 0 0 20px 0;
+	color: #3498db;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 300;
+	font-size: 130%;
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.grid figcaption p {
+	padding: 0 20px;
+	color: #aaa;
+	font-weight: 300;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.grid figcaption h2,
+.grid figcaption p {
+	-webkit-transform: translateY(50px);
+	transform: translateY(50px);
+}
+
+.grid figure button {
+	position: absolute;
+	padding: 4px 20px;
+	border: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.grid figcaption,
+.grid figcaption h2,
+.grid figcaption p,
+.grid figure button {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+/* Style for SVG */
+.grid svg {
+	position: absolute;
+	top: -1px; /* fixes rendering issue in FF */
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+}
+
+.grid svg path {
+	fill: #fff;
+}
+
+/* Hover effects */
+.grid a:hover figure img {
+	opacity: 1;
+}
+
+.grid a:hover figcaption h2,
+.grid a:hover figcaption p {
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.grid a:hover figcaption p {
+	opacity: 0;
+}
+
+/* Individual styles */
+.demo-2 body {
+	background-image: url('../_img/Pixiu_Background.png');	
+}
+
+.demo-2 .grid figcaption h2 {
+	color: #e74c3c;
+}
+
+.demo-2 .grid figcaption p {
+	-webkit-transition-delay: 0.05s;
+	transition-delay: 0.05s;
+}
+
+.demo-2 .grid figure button {
+	bottom: 0;
+	left: 0;
+	padding: 15px;
+	width: 100%;
+	background: #fff;
+	color: #333;
+	font-weight: 300;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+.demo-2 .grid a:hover figure button {
+	-webkit-transition-timing-function: ease-out;
+	transition-timing-function: ease-out;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+}
+
+.demo-2 .grid figcaption h2, 
+.demo-2 .grid figcaption p,
+
+.demo-2 .grid a:hover figcaption p,
+.demo-3 .grid a:hover figcaption p {
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+	-webkit-transition-duration: 0.1s;
+	transition-duration: 0.1s;
+}
+
+/* My CSS Style */
+	.title_img
+	{
+		max-width:527px;
+		max-height:346px;
+		width:100%;
+		height:100%;
+	}
+
+	.logo_img
+	{
+		max-width:500px;
+		max-height:445px;
+		width:100%;
+		height:100%;
+	}
+
+	#wrapper_block{
+		margin: 40px auto 120px auto;
+		max-width: 1200px;
+		width: 90%;
+	}
+
+	#form_block {
+		float: left;
+		margin: 5px;
+		padding: 5px;
+		max-width:561px;
+		width: 100%;
+		height: 100%;
+
+		border-radius: 10px;
+		background-color: #F0F0F0;
+		margin: 5px;
+		padding: 5px;	
+		width: 100%;
+		height: 100%;
+		border:1px solid #D1CEBF;
+	}
+
+	#logo_block {
+		float: left;
+		margin: 5px;
+		padding: 5px;
+		max-width:500px;
+		width: 100%;
+		height: 100%;
+	}
+	#predi_text
+	{
+		width:90%;
+		padding-top: 50px;
+		color:#000000;
+		text-align: left;
+		line-height: 200%;
+		font-size:18px;
+	}
+
+/* Media Queries */
+/* Let's redefine the width of each anchor and the margins */
+@media screen and (max-width: 1024px) {
+	.modal {
+		zoom: 150%;
+	}
+	
+	.IndexTitle{
+		position: relative;
+		right: 30px;
+		zoom: 150%;
+	}
+	
+	.IndexLogo {
+		position: relative;
+		right: 30px;
+	}
+	
+	.IndexText{
+		zoom: 200%;
+	}
+	
+	.grid {
+		max-width: 450px;
+		zoom: 180%;
+	}
+
+	.grid a {
+		width: 50%;
+	}
+
+	.grid a:nth-child(3n-1) {
+		margin: 0;
+	}
+
+	.grid a:nth-child(even) {
+		margin: 0px 0 0px 0;
+	}
+
+
+	.grid figcaption h2 {
+		margin-bottom: 0px;
+		-webkit-transform: translateY(30px);
+		transform: translateY(30px);
+	}
+
+	.grid figcaption p {
+		margin: 0;
+		padding: 0 10px;
+	}
+	
+	#Painting
+	{
+		padding-top:1px;
+		position: relative;
+		display: block;
+		width: 100%;
+		opacity: 0.8;
+		-webkit-transition: opacity 0.3s;
+		transition: opacity 0.3s;
+	}
+	
+	#logo_block
+	{
+		zoom:300%;
+	}
+	
+	#predi_text
+	{
+		font-size:25px;
+		width:100%;
+		zoom: 160%;
+	}
+	
+	#form_block
+	{
+		zoom:210%;
+	}
+}

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0a9863cd-e5f0-46fd-8753-9c5149dbfb34}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>setup.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="deploy\circus.ini" />
+    <Content Include="deploy\makerpm\linux2v.spec" />
+    <Content Include="deploy\makerpm\SOURCES\circus.ini" />
+    <Content Include="deploy\makerpm\SOURCES\linux2v.ini" />
+    <Content Include="deploy\store_circus.ini" />
+    <Content Include="deploy\test_circus.ini" />
+    <Content Include="development.ini" />
+    <Content Include="gcc.txt" />
+    <Content Include="pytest.ini" />
+    <Content Include="tests.ini" />
+    <Content Include="tox.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="linux2v\db\store.py" />
+    <Compile Include="linux2v\db\__init__.py" />
+    <Compile Include="linux2v\exceptions.py" />
+    <Compile Include="linux2v\fixtures\mac.py" />
+    <Compile Include="linux2v\fixtures\__init__.py" />
+    <Compile Include="linux2v\hueyserve.py" />
+    <Compile Include="linux2v\hueytask.py" />
+    <Compile Include="linux2v\launcher\converter.py" />
+    <Compile Include="linux2v\launcher\job.py" />
+    <Compile Include="linux2v\launcher\networkconverter.py" />
+    <Compile Include="linux2v\launcher\scheduler.py" />
+    <Compile Include="linux2v\launcher\service.py" />
+    <Compile Include="linux2v\launcher\templates.py" />
+    <Compile Include="linux2v\launcher\thirdparty.py" />
+    <Compile Include="linux2v\launcher\__init__.py" />
+    <Compile Include="linux2v\lib\cli.py" />
+    <Compile Include="linux2v\lib\humanhash.py" />
+    <Compile Include="linux2v\lib\log.py" />
+    <Compile Include="linux2v\lib\macho\disk.py" />
+    <Compile Include="linux2v\lib\macho\host.py" />
+    <Compile Include="linux2v\lib\macho\storage.py" />
+    <Compile Include="linux2v\lib\macho\__init__.py" />
+    <Compile Include="linux2v\lib\strutil.py" />
+    <Compile Include="linux2v\lib\utc.py" />
+    <Compile Include="linux2v\lib\__init__.py" />
+    <Compile Include="linux2v\mgmt.py" />
+    <Compile Include="linux2v\request.py" />
+    <Compile Include="linux2v\response.py" />
+    <Compile Include="linux2v\scripts\base.py" />
+    <Compile Include="linux2v\scripts\maincmd.py" />
+    <Compile Include="linux2v\scripts\runonced\_2vsettings_redhat.py" />
+    <Compile Include="linux2v\scripts\runonced\_2vsettings_ubuntu.py" />
+    <Compile Include="linux2v\scripts\runonced\_6_x2v_firstboot.py" />
+    <Compile Include="linux2v\scripts\runonced\_reset_redhat_network.py" />
+    <Compile Include="linux2v\scripts\runonced\_reset_ubuntu_network.py" />
+    <Compile Include="linux2v\scripts\runonced\_templates.py" />
+    <Compile Include="linux2v\scripts\runonced\_utils.py" />
+    <Compile Include="linux2v\scripts\__init__.py" />
+    <Compile Include="linux2v\spec.py" />
+    <Compile Include="linux2v\srift.py" />
+    <Compile Include="linux2v\__init__.py" />
+    <Compile Include="setup.py" />
+    <Compile Include="tests\base.py" />
+    <Compile Include="tests\conftest.py" />
+    <Compile Include="tests\units\launcher\base.py" />
+    <Compile Include="tests\units\launcher\test_job.py" />
+    <Compile Include="tests\units\launcher\test_networkconverter.py" />
+    <Compile Include="tests\units\launcher\test_service.py" />
+    <Compile Include="tests\units\launcher\test_systemdiskconverter.py" />
+    <Compile Include="tests\units\launcher\test_thirdparty.py" />
+    <Compile Include="tests\units\launcher\__init__.py" />
+    <Compile Include="tests\units\lib\base.py" />
+    <Compile Include="tests\units\lib\macho\base.py" />
+    <Compile Include="tests\units\lib\macho\test_host.py" />
+    <Compile Include="tests\units\lib\macho\test_storage.py" />
+    <Compile Include="tests\units\lib\macho\__init__.py" />
+    <Compile Include="tests\units\lib\test_cli.py" />
+    <Compile Include="tests\units\lib\__init__.py" />
+    <Compile Include="tests\units\__init__.py" />
+    <Compile Include="tests\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="deploy" />
+    <Folder Include="deploy\makerpm\" />
+    <Folder Include="deploy\makerpm\SOURCES" />
+    <Folder Include="linux2v" />
+    <Folder Include="linux2v\db" />
+    <Folder Include="linux2v\fixtures" />
+    <Folder Include="linux2v\launcher" />
+    <Folder Include="linux2v\lib" />
+    <Folder Include="linux2v\lib\macho" />
+    <Folder Include="linux2v\scripts" />
+    <Folder Include="linux2v\scripts\runonced" />
+    <Folder Include="tests" />
+    <Folder Include="tests\units" />
+    <Folder Include="tests\units\launcher" />
+    <Folder Include="tests\units\lib" />
+    <Folder Include="tests\units\lib\macho" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\windows">
+      <UniqueIdentifier>{ea272efe-d32f-48c6-ac4e-2e6c81ae0e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{c61de0bc-57b3-429a-82b0-01e917b4f02a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\config">
+      <UniqueIdentifier>{a5e1633c-19b6-4dcf-ab63-4e0611a1d0af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\interprocess">
+      <UniqueIdentifier>{1a8edd40-5238-4fc1-aecd-b812f09d6529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\registry">
+      <UniqueIdentifier>{caa40008-c772-4d68-b28f-843cee54de4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\security">
+      <UniqueIdentifier>{630516a3-b369-4560-9710-d6f2ddecc94e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\application">
+      <UniqueIdentifier>{1cdb9c79-9ba8-4649-8737-086a715bac0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\com+">
+      <UniqueIdentifier>{7aae0f0a-f565-4962-8d77-325cd6ceb679}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\management">
+      <UniqueIdentifier>{d4d49904-f565-4636-a2a9-99d1664eb3da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\io">
+      <UniqueIdentifier>{def1e832-d94e-4f7f-a887-39ea51a94d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\cluster">
+      <UniqueIdentifier>{b7818776-659c-4405-8ac6-042942c0e743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\others">
+      <UniqueIdentifier>{6f471111-86c6-468a-9b4b-c64dbd6c8798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\file">
+      <UniqueIdentifier>{9561b407-5b25-484d-b5e8-602867ac7389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\windows\device">
+      <UniqueIdentifier>{84113dc1-d05b-4c91-8280-6cf54f2a0ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cab">
+      <UniqueIdentifier>{f0fbdaba-2f6f-4484-91d2-6a99ccf43673}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\includes\common\base32.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\bytes.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\crc32.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\exception_base.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\mobject.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\stringutils.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\tracelog.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\config\config.hpp">
+      <Filter>Header Files\config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\json_spirit.h">
+      <Filter>Header Files\others</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\libssh2.h">
+      <Filter>Header Files\others</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\openssl.h">
+      <Filter>Header Files\others</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\application_settings.hpp">
+      <Filter>Header Files\windows\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\msi_component.hpp">
+      <Filter>Header Files\windows\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\reg_cluster_edit.hpp">
+      <Filter>Header Files\windows\cluster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\com_init.hpp">
+      <Filter>Header Files\windows\com+</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\lock.hpp">
+      <Filter>Header Files\windows\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\mutex.hpp">
+      <Filter>Header Files\windows\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\disk.hpp">
+      <Filter>Header Files\windows\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\volume.hpp">
+      <Filter>Header Files\windows\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\wmi.hpp">
+      <Filter>Header Files\windows\management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\reg_edit_base.hpp">
+      <Filter>Header Files\windows\registry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\reg_native_edit.hpp">
+      <Filter>Header Files\windows\registry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\registry.hpp">
+      <Filter>Header Files\windows\registry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\protected_data.hpp">
+      <Filter>Header Files\windows\security</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\auto_handle_base.hpp">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\environment.hpp">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\macho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\xor_crypto.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\crc8.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\license.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\sha1.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\common\ntp_client.hpp">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\service.hpp">
+      <Filter>Header Files\windows\management</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\file_version_info.hpp">
+      <Filter>Header Files\windows\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\setup_inf_file.hpp">
+      <Filter>Header Files\windows\application</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\executable_file_info.hpp">
+      <Filter>Header Files\windows\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\hardware_device.hpp">
+      <Filter>Header Files\windows\device</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\windows\cabinet.hpp">
+      <Filter>Header Files\cab</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lib_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

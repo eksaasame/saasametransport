@@ -1,0 +1,41 @@
+sudo yum group install "Development Tools"
+sudo yum install zlib-devel
+
+
+mkdir -p $HOME/bin $HOME/gcc/src $HOME/gcc/bin $HOME/gcc/lib
+ln -s $HOME/gcc/lib $HOME/gcc/lib64
+
+set +h    # disable shell hashing to ensure mid-installation binutils are used immediately
+
+export PATH="$HOME/gcc/bin:$PATH"                       
+export LD_LIBRARY_PATH="$HOME/gcc/lib:$LD_LIBRARY_PATH"
+
+cd $HOME/gcc/src
+wget 'http://www.netgull.com/gcc/releases/gcc-5.4.0/gcc-5.4.0.tar.bz2'
+tar -xf gcc-5.4.0.tar.bz2
+cd gcc-5.4.0
+./contrib/download_prerequisites
+
+mkdir build
+cd build
+../configure --prefix=$HOME/gcc --with-local-prefix=$HOME/gcc \
+    --with-system-zlib --with-gnu-as --with-gnu-ld --enable-clocale=gnu \
+    --enable-shared --enable-threads=posix --enable-__cxa_atexit \
+    --disable-nls --disable-multilib
+
+make            # Now go to sleep, as this takes ~4 hours.
+make install    # Resist the temptation to "make -j8" because you'll probably
+                # exceed your account memory quota...
+
+############################################################
+# Clean up & set Environment
+############################################################
+set -h
+rm -r $HOME/gcc/src
+cd $HOME/gcc/bin && ln -s gcc cc
+
+echo 'export PATH="$HOME/gcc/bin:$PATH"' >> $HOME/.bashrc
+echo 'export CPPFLAGS="-I$HOME/gcc/include $CPPFLAGS"' >> $HOME/.bashrc
+echo 'export LDFLAGS="-L$HOME/gcc/lib $LDFLAGS"' >> $HOME/.bashrc
+echo 'export LD_LIBRARY_PATH="$HOME/gcc/lib:$LD_LIBRARY_PATH"' >> $HOME/.bashrc
+

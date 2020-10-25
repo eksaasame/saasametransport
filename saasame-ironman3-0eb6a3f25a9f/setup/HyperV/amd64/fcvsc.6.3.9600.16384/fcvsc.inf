@@ -1,0 +1,162 @@
+;/*++
+;
+;Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;Module Name:
+;
+;    fcvsc.inf
+;
+;Abstract:
+;       
+;    INF file for installing the synthetic Fibre Channel HBA driver.
+;
+;--*/
+
+[Version]
+signature="$WINDOWS NT$"
+
+Class=SCSIAdapter
+ClassGuid={4d36e97b-e325-11ce-bfc1-08002be10318} 
+Provider=%Mfg%
+
+CatalogFile=fcvsc.cat
+DriverVer=06/21/2006,6.3.9600.16384
+
+[SourceDisksNames]
+1=%DiskId%
+
+[SourceDisksFiles]
+fcvsc.sys = 1
+
+[DestinationDirs]
+DefaultDestDir = 12 ; system32\drivers
+
+[Manufacturer]
+%Mfg%=Microsoft,NT.5.2,NTamd64.5.2,NTx86.6.0.0x0000001,NTx86.6.0.0x0000002,NTx86.6.0.0x0000003,NTamd64.6.0.0x0000001,NTamd64.6.0.0x0000002,NTamd64.6.0.0x0000003
+
+;
+; Block installation of unspecified older versions (e.g. NT5)
+;
+[Microsoft]
+%DeviceDesc_NULL% = fcvscDriveInstall_NULL, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+;
+; Block installation of NT 5.2 (2k3)
+;
+[Microsoft.NT.5.2]
+%DeviceDesc_NULL% = fcvscDriveInstall_NULL, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+[Microsoft.NTamd64.5.2]
+%DeviceDesc_NULL% = fcvscDriveInstall_NULL, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+;
+; Block installation of NT 6 and later Workstation - 0x0000001 (Vista, Win7, Win8 Client)
+;
+[Microsoft.NTx86.6.0.0x0000001]
+%DeviceDesc_NULL% = fcvscDriveInstall_NULL, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+[Microsoft.NTamd64.6.0.0x0000001]
+%DeviceDesc_NULL% = fcvscDriveInstall_NULL, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+;
+; Allow installation of NT 6 and later Domain Controller - 0x0000002 
+;
+[Microsoft.NTx86.6.0.0x0000002]
+%DeviceDesc% = fcvscDriveInstall, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+[Microsoft.NTamd64.6.0.0x0000002]
+%DeviceDesc% = fcvscDriveInstall, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+;
+; Allow installation of NT 6 and later Server - 0x0000003
+;
+[Microsoft.NTx86.6.0.0x0000003]
+%DeviceDesc% = fcvscDriveInstall, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+[Microsoft.NTamd64.6.0.0x0000003]
+%DeviceDesc% = fcvscDriveInstall, VMBUS\{2f9bcc4a-0069-4af3-b76b-6fd0be528cda}
+
+
+[fcvscDriveInstall]
+CopyFiles=SYS.CopyList
+
+[SYS.CopyList]
+fcvsc.sys
+
+[fcvscDriveInstall.Services]
+AddService = "fcvsc",%SPSVCINST_ASSOCSERVICE%,fcvsc_Service_Inst
+
+[pnpsafe_pci_addreg]
+HKR,"Parameters\Device",EnableQueryAccessAlignment,0x00010001,0x00000001
+
+[bus_type_fc]
+HKR,"Parameters","BusType",0x00010001,6
+
+[fcvsc_Service_Inst]
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_DEMAND_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+LoadOrderGroup = SCSI miniport
+ServiceBinary = %12%\fcvsc.sys
+AddReg        = pnpsafe_pci_addreg
+AddReg        = bus_type_fc
+
+[fcvscDriveInstall_Null.Services]
+AddService = ,%SPSVCINST_ASSOCSERVICE%  ; null service install
+
+[fcvscDriveInstall.HW]
+AddReg=fcvsc_vmbus_addreg
+
+[fcvsc_vmbus_addreg]
+HKR,,DedicatedProcessor,0x00010001,1
+
+;
+; Uninstallation sections
+;
+
+[DefaultUninstall.Services]
+DelService = fcvsc,0x00000200
+
+[DefaultUninstall]
+DelFiles = SYS.CopyList
+
+
+[Strings]
+;Localizable
+DeviceDesc = "Microsoft Hyper-V Fibre Channel HBA"
+DeviceDesc_NULL = "Microsoft Hyper-V Fibre Channel HBA (not supported)"
+
+;Non-Localizable
+Mfg = "Microsoft"
+DiskId = "Microsoft Hyper-V Fibre Channel HBA Installation Disk #1"
+
+
+;
+; The "standard" defines
+;
+SPSVCINST_ASSOCSERVICE             = 0x00000002
+
+COPYFLG_WARN_IF_SKIP         = 0x00000001
+COPYFLG_NOSKIP               = 0x00000002
+COPYFLG_NOVERSIONCHECK       = 0x00000004
+COPYFLG_FORCE_FILE_IN_USE    = 0x00000008
+COPYFLG_NO_OVERWRITE         = 0x00000010
+COPYFLG_NO_VERSION_DIALOG    = 0x00000020
+COPYFLG_OVERWRITE_OLDER_ONLY = 0x00000040
+COPYFLG_REPLACEONLY          = 0x00000400
+COPYFLG_REPLACE_BOOT_FILE    = 0x00001000
+COPYFLG_NOPRUNE              = 0x00002000
+
+SERVICE_KERNEL_DRIVER      = 0x00000001
+
+SERVICE_BOOT_START   = 0x00000000
+SERVICE_SYSTEM_START = 0x00000001
+SERVICE_AUTO_START   = 0x00000002
+SERVICE_DEMAND_START = 0x00000003
+SERVICE_DISABLED     = 0x00000004
+
+SERVICE_ERROR_IGNORE   = 0x00000000
+SERVICE_ERROR_NORMAL   = 0x00000001
+SERVICE_ERROR_SEVERE   = 0x00000002
+SERVICE_ERROR_CRITICAL = 0x00000003
+

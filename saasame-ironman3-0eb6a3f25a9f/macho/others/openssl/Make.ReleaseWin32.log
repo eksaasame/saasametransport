@@ -1,0 +1,132 @@
+Building OpenSSL
+	perl util/copy.pl ".\.\e_os.h" "tmp32dll\e_os.h"
+Copying: ././e_os.h to tmp32dll/e_os.h
+	perl util/copy.pl ".\crypto\cryptlib.h" "tmp32dll\cryptlib.h"
+Copying: ./crypto/cryptlib.h to tmp32dll/cryptlib.h
+	perl util/copy.pl ".\crypto\buildinf.h" "tmp32dll\buildinf.h"
+Copying: ./crypto/buildinf.h to tmp32dll/buildinf.h
+	perl util/copy.pl ".\crypto\md32_common.h" "tmp32dll\md32_common.h"
+Copying: ./crypto/md32_common.h to tmp32dll/md32_common.h
+	perl util/copy.pl ".\crypto\o_time.h" "tmp32dll\o_time.h"
+Copying: ./crypto/o_time.h to tmp32dll/o_time.h
+	perl util/copy.pl ".\crypto\o_str.h" "tmp32dll\o_str.h"
+Copying: ./crypto/o_str.h to tmp32dll/o_str.h
+	perl util/copy.pl ".\crypto\o_dir.h" "tmp32dll\o_dir.h"
+Copying: ./crypto/o_dir.h to tmp32dll/o_dir.h
+	perl util/copy.pl ".\crypto\md4\md4_locl.h" "tmp32dll\md4_locl.h"
+Copying: ./crypto/md4/md4_locl.h to tmp32dll/md4_locl.h
+	perl util/copy.pl ".\crypto\md5\md5_locl.h" "tmp32dll\md5_locl.h"
+Copying: ./crypto/md5/md5_locl.h to tmp32dll/md5_locl.h
+	perl util/copy.pl ".\crypto\sha\sha_locl.h" "tmp32dll\sha_locl.h"
+Copying: ./crypto/sha/sha_locl.h to tmp32dll/sha_locl.h
+	perl util/copy.pl ".\crypto\ripemd\rmd_locl.h" "tmp32dll\rmd_locl.h"
+Copying: ./crypto/ripemd/rmd_locl.h to tmp32dll/rmd_locl.h
+	perl util/copy.pl ".\crypto\ripemd\rmdconst.h" "tmp32dll\rmdconst.h"
+Copying: ./crypto/ripemd/rmdconst.h to tmp32dll/rmdconst.h
+	perl util/copy.pl ".\crypto\des\des_locl.h" "tmp32dll\des_locl.h"
+Copying: ./crypto/des/des_locl.h to tmp32dll/des_locl.h
+	perl util/copy.pl ".\crypto\des\rpc_des.h" "tmp32dll\rpc_des.h"
+Copying: ./crypto/des/rpc_des.h to tmp32dll/rpc_des.h
+	perl util/copy.pl ".\crypto\des\spr.h" "tmp32dll\spr.h"
+Copying: ./crypto/des/spr.h to tmp32dll/spr.h
+	perl util/copy.pl ".\crypto\des\des_ver.h" "tmp32dll\des_ver.h"
+Copying: ./crypto/des/des_ver.h to tmp32dll/des_ver.h
+	perl util/copy.pl ".\crypto\rc2\rc2_locl.h" "tmp32dll\rc2_locl.h"
+Copying: ./crypto/rc2/rc2_locl.h to tmp32dll/rc2_locl.h
+	perl util/copy.pl ".\crypto\rc4\rc4_locl.h" "tmp32dll\rc4_locl.h"
+Copying: ./crypto/rc4/rc4_locl.h to tmp32dll/rc4_locl.h
+	perl util/copy.pl ".\crypto\idea\idea_lcl.h" "tmp32dll\idea_lcl.h"
+Copying: ./crypto/idea/idea_lcl.h to tmp32dll/idea_lcl.h
+	perl util/copy.pl ".\crypto\bf\bf_pi.h" "tmp32dll\bf_pi.h"
+Copying: ./crypto/bf/bf_pi.h to tmp32dll/bf_pi.h
+	perl util/copy.pl ".\crypto\bf\bf_locl.h" "tmp32dll\bf_locl.h"
+Copying: ./crypto/bf/bf_locl.h to tmp32dll/bf_locl.h
+	perl util/copy.pl ".\crypto\cast\cast_s.h" "tmp32dll\cast_s.h"
+Copying: ./crypto/cast/cast_s.h to tmp32dll/cast_s.h
+	perl util/copy.pl ".\crypto\cast\cast_lcl.h" "tmp32dll\cast_lcl.h"
+Copying: ./crypto/cast/cast_lcl.h to tmp32dll/cast_lcl.h
+	perl util/copy.pl ".\crypto\aes\aes_locl.h" "tmp32dll\aes_locl.h"
+Copying: ./crypto/aes/aes_locl.h to tmp32dll/aes_locl.h
+	perl util/copy.pl ".\crypto\bn\bn_lcl.h" "tmp32dll\bn_lcl.h"
+Copying: ./crypto/bn/bn_lcl.h to tmp32dll/bn_lcl.h
+	perl util/copy.pl ".\crypto\bn\bn_prime.h" "tmp32dll\bn_prime.h"
+Copying: ./crypto/bn/bn_prime.h to tmp32dll/bn_prime.h
+	perl util/copy.pl ".\crypto\ec\ec_lcl.h" "tmp32dll\ec_lcl.h"
+Copying: ./crypto/ec/ec_lcl.h to tmp32dll/ec_lcl.h
+	perl util/copy.pl ".\crypto\ecdh\ech_locl.h" "tmp32dll\ech_locl.h"
+Copying: ./crypto/ecdh/ech_locl.h to tmp32dll/ech_locl.h
+	perl util/copy.pl ".\crypto\ecdsa\ecs_locl.h" "tmp32dll\ecs_locl.h"
+Copying: ./crypto/ecdsa/ecs_locl.h to tmp32dll/ecs_locl.h
+	perl util/copy.pl ".\crypto\bio\bio_lcl.h" "tmp32dll\bio_lcl.h"
+Copying: ./crypto/bio/bio_lcl.h to tmp32dll/bio_lcl.h
+	perl util/copy.pl ".\crypto\objects\obj_dat.h" "tmp32dll\obj_dat.h"
+Copying: ./crypto/objects/obj_dat.h to tmp32dll/obj_dat.h
+	perl util/copy.pl ".\crypto\x509v3\pcy_int.h" "tmp32dll\pcy_int.h"
+Copying: ./crypto/x509v3/pcy_int.h to tmp32dll/pcy_int.h
+	perl util/copy.pl ".\crypto\conf\conf_def.h" "tmp32dll\conf_def.h"
+Copying: ./crypto/conf/conf_def.h to tmp32dll/conf_def.h
+	perl util/copy.pl ".\crypto\ui\ui_locl.h" "tmp32dll\ui_locl.h"
+Copying: ./crypto/ui/ui_locl.h to tmp32dll/ui_locl.h
+	perl util/copy.pl ".\crypto\store\str_locl.h" "tmp32dll\str_locl.h"
+Copying: ./crypto/store/str_locl.h to tmp32dll/str_locl.h
+	perl util/copy.pl ".\ssl\ssl_locl.h" "tmp32dll\ssl_locl.h"
+Copying: ./ssl/ssl_locl.h to tmp32dll/ssl_locl.h
+	perl util/copy.pl ".\ssl\kssl_lcl.h" "tmp32dll\kssl_lcl.h"
+Copying: ./ssl/kssl_lcl.h to tmp32dll/kssl_lcl.h
+	perl util/copy.pl ".\apps\apps.h" "tmp32dll\apps.h"
+Copying: ./apps/apps.h to tmp32dll/apps.h
+	perl util/copy.pl ".\apps\progs.h" "tmp32dll\progs.h"
+Copying: ./apps/progs.h to tmp32dll/progs.h
+	perl util/copy.pl ".\apps\s_apps.h" "tmp32dll\s_apps.h"
+Copying: ./apps/s_apps.h to tmp32dll/s_apps.h
+	perl util/copy.pl ".\apps\testdsa.h" "tmp32dll\testdsa.h"
+Copying: ./apps/testdsa.h to tmp32dll/testdsa.h
+	perl util/copy.pl ".\apps\testrsa.h" "tmp32dll\testrsa.h"
+Copying: ./apps/testrsa.h to tmp32dll/testrsa.h
+	perl util/copy.pl ".\engines\e_4758cca_err.c" "tmp32dll\e_4758cca_err.c"
+Copying: ./engines/e_4758cca_err.c to tmp32dll/e_4758cca_err.c
+	perl util/copy.pl ".\engines\e_4758cca_err.h" "tmp32dll\e_4758cca_err.h"
+Copying: ./engines/e_4758cca_err.h to tmp32dll/e_4758cca_err.h
+	perl util/copy.pl ".\engines\e_aep_err.c" "tmp32dll\e_aep_err.c"
+Copying: ./engines/e_aep_err.c to tmp32dll/e_aep_err.c
+	perl util/copy.pl ".\engines\e_aep_err.h" "tmp32dll\e_aep_err.h"
+Copying: ./engines/e_aep_err.h to tmp32dll/e_aep_err.h
+	perl util/copy.pl ".\engines\e_atalla_err.c" "tmp32dll\e_atalla_err.c"
+Copying: ./engines/e_atalla_err.c to tmp32dll/e_atalla_err.c
+	perl util/copy.pl ".\engines\e_atalla_err.h" "tmp32dll\e_atalla_err.h"
+Copying: ./engines/e_atalla_err.h to tmp32dll/e_atalla_err.h
+	perl util/copy.pl ".\engines\e_cswift_err.c" "tmp32dll\e_cswift_err.c"
+Copying: ./engines/e_cswift_err.c to tmp32dll/e_cswift_err.c
+	perl util/copy.pl ".\engines\e_cswift_err.h" "tmp32dll\e_cswift_err.h"
+Copying: ./engines/e_cswift_err.h to tmp32dll/e_cswift_err.h
+	perl util/copy.pl ".\engines\e_gmp_err.c" "tmp32dll\e_gmp_err.c"
+Copying: ./engines/e_gmp_err.c to tmp32dll/e_gmp_err.c
+	perl util/copy.pl ".\engines\e_gmp_err.h" "tmp32dll\e_gmp_err.h"
+Copying: ./engines/e_gmp_err.h to tmp32dll/e_gmp_err.h
+	perl util/copy.pl ".\engines\e_chil_err.c" "tmp32dll\e_chil_err.c"
+Copying: ./engines/e_chil_err.c to tmp32dll/e_chil_err.c
+	perl util/copy.pl ".\engines\e_chil_err.h" "tmp32dll\e_chil_err.h"
+Copying: ./engines/e_chil_err.h to tmp32dll/e_chil_err.h
+	perl util/copy.pl ".\engines\e_nuron_err.c" "tmp32dll\e_nuron_err.c"
+Copying: ./engines/e_nuron_err.c to tmp32dll/e_nuron_err.c
+	perl util/copy.pl ".\engines\e_nuron_err.h" "tmp32dll\e_nuron_err.h"
+Copying: ./engines/e_nuron_err.h to tmp32dll/e_nuron_err.h
+	perl util/copy.pl ".\engines\e_sureware_err.c" "tmp32dll\e_sureware_err.c"
+Copying: ./engines/e_sureware_err.c to tmp32dll/e_sureware_err.c
+	perl util/copy.pl ".\engines\e_sureware_err.h" "tmp32dll\e_sureware_err.h"
+Copying: ./engines/e_sureware_err.h to tmp32dll/e_sureware_err.h
+	perl util/copy.pl ".\engines\e_ubsec_err.c" "tmp32dll\e_ubsec_err.c"
+Copying: ./engines/e_ubsec_err.c to tmp32dll/e_ubsec_err.c
+	perl util/copy.pl ".\engines\e_ubsec_err.h" "tmp32dll\e_ubsec_err.h"
+Copying: ./engines/e_ubsec_err.h to tmp32dll/e_ubsec_err.h
+	perl util/copy.pl ".\engines\e_capi_err.c" "tmp32dll\e_capi_err.c"
+Copying: ./engines/e_capi_err.c to tmp32dll/e_capi_err.c
+	perl util/copy.pl ".\engines\e_capi_err.h" "tmp32dll\e_capi_err.h"
+Copying: ./engines/e_capi_err.h to tmp32dll/e_capi_err.h
+	perl util/copy.pl ".\crypto\opensslconf.h" "inc32\openssl\opensslconf.h"
+Copying: ./crypto/opensslconf.h to inc32/openssl/opensslconf.h
+	cl /Fotmp32dll\uplink.obj -Iinc32 -Itmp32dll /MD /Ox /O2 /Ob2 /W3 /WX /Gs0 /GF /Gy /nologo -DOPENSSL_SYSNAME_WIN32 -DWIN32_LEAN_AND_MEAN -DL_ENDIAN -DDSO_WIN32 -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DOPENSSL_SYSNAME_WINNT -DUNICODE -D_UNICODE -DOPENSSL_USE_APPLINK -I. /Fdout32dll -DOPENSSL_NO_CAMELLIA -DOPENSSL_NO_SEED -DOPENSSL_NO_RC5 -DOPENSSL_NO_MDC2 -DOPENSSL_NO_CMS -DOPENSSL_NO_JPAKE -DOPENSSL_NO_CAPIENG -DOPENSSL_NO_KRB5 -DOPENSSL_NO_DYNAMIC_ENGINE -D_WINDLL  -c ms\uplink.c
+uplink.c
+ms\uplink.c(43) : error C2220: warning treated as error - no 'object' file generated
+ms\uplink.c(43) : warning C4996: '_swprintf': swprintf has been changed to conform with the ISO C standard, adding an extra character count parameter. To use traditional Microsoft swprintf, set _CRT_NON_CONFORMING_SWPRINTFS.
+        c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\INCLUDE\wchar.h(761) : see declaration of '_swprintf'

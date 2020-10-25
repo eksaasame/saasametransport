@@ -1,0 +1,15 @@
+@mattcaswell I got it to work (1.0.2h) by using NASM - like people above said.
+
+Here's exactly what to do:
+
+Extract the source code to a new clean folder - failed appempts seem to leave a lot of crap
+
+Download Nasm.exe if you don't already have it - http://www.nasm.us/. Just put it in C:\Windows\System32 (or in your path) // << Download the win32 version >>
+
+Start the VS2012 X86 Command prompt - and run the following:
+
+"c:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
+perl Configure VC-WIN32 --prefix=C:\Build-OpenSSL-VC-32
+ms\do_nasm.bat
+nmake -f ms\nt.mak
+nmake -f ms\nt.mak install

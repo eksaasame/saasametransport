@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug-Static|Win32">
+      <Configuration>Debug-Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug-Static|x64">
+      <Configuration>Debug-Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release-Static-2k3|Win32">
+      <Configuration>Release-Static-2k3</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release-Static-2k3|x64">
+      <Configuration>Release-Static-2k3</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release-Static|Win32">
+      <Configuration>Release-Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release-Static|x64">
+      <Configuration>Release-Static</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ECD45379-34C6-46D2-8239-061B54AE5FD0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>irm_launcher</RootNamespace>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <NuGetPackageImportStamp>0b5fce9c</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;_AZURE_BLOB=1;_VMWARE_VADP=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;..\opensources\lz4-r131\lib;..\ntfs_parser;..\irm_hypervisor;..\irm_hypervisor_ex;..\vim60proxy;..\opensources\gsoap_2.8.44\gsoap;..\opensources\VMware-Vix-DiskLib\include;..\vmp\vmp</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>irm_hypervisor_ex.dll;wastoraged.dll;cpprest120d_2_9.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Static|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;..\opensources\lz4-r131\lib;..\ntfs_parser</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>irm_hypervisor_ex.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;_AZURE_BLOB=1;_VMWARE_VADP=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;..\opensources\lz4-r131\lib;..\ntfs_parser;..\irm_hypervisor;..\irm_hypervisor_ex;..\vim60proxy;..\opensources\gsoap_2.8.44\gsoap;..\opensources\VMware-Vix-DiskLib\include;..\vmp\vmp</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>irm_hypervisor_ex.dll;wastorage.dll;cpprest120_2_9.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;..\opensources\lz4-r131\lib;..\ntfs_parser</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>irm_hypervisor_ex.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Static-2k3|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NOMINMAX;WIN32;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;_SCL_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(THRIFT_CPP);$(BOOSTINCS);$(MACHOINCS);..\gen-cpp;..\opensources\Boost.Application\include;..\opensources\Boost.Application\example;..\opensources\curl\curl-7.40.0\include;..\opensources\lz4-r131\lib;..\ntfs_parser</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(BOOSTLIBS)\$(Platform);$(MACHOLIBS)\$(Configuration)$(Platform);$(outDir)</AdditionalLibraryDirectories>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>irm_hypervisor_ex.dll</DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\gen-cpp\carrier_service.h" />
+    <ClInclude Include="..\gen-cpp\common_connection_service.h" />
+    <ClInclude Include="..\gen-cpp\common_service.h" />
+    <ClInclude Include="..\gen-cpp\common_service_handler.h" />
+    <ClInclude Include="..\gen-cpp\launcher_service.h" />
+    <ClInclude Include="..\gen-cpp\loader_service.h" />
+    <ClInclude Include="..\gen-cpp\management_service.h" />
+    <ClInclude Include="..\gen-cpp\mgmt_op.h" />
+    <ClInclude Include="..\gen-cpp\physical_packer_service.h" />
+    <ClInclude Include="..\gen-cpp\physical_packer_service_proxy.h" />
+    <ClInclude Include="..\gen-cpp\reverse_transport.h" />
+    <ClInclude Include="..\gen-cpp\saasame_constants.h" />
+    <ClInclude Include="..\gen-cpp\saasame_types.h" />
+    <ClInclude Include="..\gen-cpp\scheduler_service.h" />
+    <ClInclude Include="..\gen-cpp\service_op.h" />
+    <ClInclude Include="..\gen-cpp\service_proxy.h" />
+    <ClInclude Include="..\gen-cpp\service_proxy_handler.h" />
+    <ClInclude Include="..\gen-cpp\TCurlClient.h" />
+    <ClInclude Include="..\gen-cpp\virtual_packer_service.h" />
+    <ClInclude Include="..\irm_host_mgmt\vhdx.h" />
+    <ClInclude Include="..\linuxfs_parser\ext2fs.h" />
+    <ClInclude Include="..\linuxfs_parser\linuxfs_parser.h" />
+    <ClInclude Include="..\linuxfs_parser\lvm.h" />
+    <ClInclude Include="..\linuxfs_parser\xfs.h" />
+    <ClInclude Include="..\macho\includes\windows\ssh_client.hpp" />
+    <ClInclude Include="..\notice\http_client.h" />
+    <ClInclude Include="..\ntfs_parser\aliyun_upload.h" />
+    <ClInclude Include="..\ntfs_parser\azure_blob_op.h" />
+    <ClInclude Include="..\ntfs_parser\clone_disk.h" />
+    <ClInclude Include="..\ntfs_parser\ntfs_parser.h" />
+    <ClInclude Include="..\ntfs_parser\shrink_volume.h" />
+    <ClInclude Include="..\ntfs_parser\vhdtool.h" />
+    <ClInclude Include="launcher_service_handler.h" />
+    <ClInclude Include="launcher_job.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\gen-cpp\carrier_service.cpp" />
+    <ClCompile Include="..\gen-cpp\common_connection_service.cpp" />
+    <ClCompile Include="..\gen-cpp\common_service.cpp" />
+    <ClCompile Include="..\gen-cpp\common_service_handler.cpp" />
+    <ClCompile Include="..\gen-cpp\launcher_service.cpp" />
+    <ClCompile Include="..\gen-cpp\loader_service.cpp" />
+    <ClCompile Include="..\gen-cpp\management_service.cpp" />
+    <ClCompile Include="..\gen-cpp\physical_packer_service.cpp" />
+    <ClCompile Include="..\gen-cpp\physical_packer_service_proxy.cpp" />
+    <ClCompile Include="..\gen-cpp\reverse_transport.cpp" />
+    <ClCompile Include="..\gen-cpp\saasame_constants.cpp" />
+    <ClCompile Include="..\gen-cpp\saasame_types.cpp" />
+    <ClCompile Include="..\gen-cpp\saasame_types2.cpp" />
+    <ClCompile Include="..\gen-cpp\scheduler_service.cpp" />
+    <ClCompile Include="..\gen-cpp\service_proxy.cpp" />
+    <ClCompile Include="..\gen-cpp\service_proxy_handler.cpp" />
+    <ClCompile Include="..\gen-cpp\TCurlClient.cpp" />
+    <ClCompile Include="..\gen-cpp\virtual_packer_service.cpp" />
+    <ClCompile Include="..\irm_host_mgmt\vhdx.cpp" />
+    <ClCompile Include="..\linuxfs_parser\ext2fs.cpp" />
+    <ClCompile Include="..\linuxfs_parser\linuxfs_parser.cpp" />
+    <ClCompile Include="..\linuxfs_parser\lvm.cpp" />
+    <ClCompile Include="..\linuxfs_parser\xfs.cpp" />
+    <ClCompile Include="..\notice\http_client.cpp" />
+    <ClCompile Include="..\ntfs_parser\aliyun_upload.cpp" />
+    <ClCompile Include="..\ntfs_parser\azure_blob_op.cpp" />
+    <ClCompile Include="..\ntfs_parser\clone_disk.cpp" />
+    <ClCompile Include="..\ntfs_parser\ntfs_parser.cpp" />
+    <ClCompile Include="..\ntfs_parser\shrink_volume.cpp" />
+    <ClCompile Include="..\ntfs_parser\vhdtool.cpp" />
+    <ClCompile Include="irm_launcher.cpp" />
+    <ClCompile Include="launcher_job.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="irm_launcher.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\setup\launcher.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+    <Import Project="..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\Microsoft.Azure.Storage.CPP.v120.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v120.targets" Condition="Exists('..\packages\Microsoft.Azure.Storage.CPP.v120.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v120.targets')" />
+    <Import Project="..\packages\wastorage.v120.4.0.0\build\native\wastorage.v120.targets" Condition="Exists('..\packages\wastorage.v120.4.0.0\build\native\wastorage.v120.targets')" />
+    <Import Project="..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="..\packages\Microsoft.Azure.Storage.CPP.v140.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v140.targets" Condition="Exists('..\packages\Microsoft.Azure.Storage.CPP.v140.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v140.targets')" />
+    <Import Project="..\packages\wastorage.v140.4.0.0\build\native\wastorage.v140.targets" Condition="Exists('..\packages\wastorage.v140.4.0.0\build\native\wastorage.v140.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Azure.Storage.CPP.v120.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.Storage.CPP.v120.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v120.targets'))" />
+    <Error Condition="!Exists('..\packages\wastorage.v120.4.0.0\build\native\wastorage.v120.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\wastorage.v120.4.0.0\build\native\wastorage.v120.targets'))" />
+    <Error Condition="!Exists('..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.2.9.1\build\native\cpprestsdk.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Azure.Storage.CPP.v140.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Azure.Storage.CPP.v140.5.0.0\build\native\Microsoft.Azure.Storage.CPP.v140.targets'))" />
+    <Error Condition="!Exists('..\packages\wastorage.v140.4.0.0\build\native\wastorage.v140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\wastorage.v140.4.0.0\build\native\wastorage.v140.targets'))" />
+  </Target>
+</Project>

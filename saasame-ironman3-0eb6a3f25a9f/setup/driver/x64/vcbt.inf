@@ -1,0 +1,84 @@
+;
+; vcbt.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class     = Volume
+ClassGUID = {71A27CDD-812A-11D0-BEC7-08002BE2092F}
+Provider  = %SaaSame%
+DriverVer=07/08/2017,1.0.1515.0
+CatalogFile= vcbt.cat
+DriverPackageType=ClassFilter
+DriverPackageDisplayName=%service_desc%
+;
+; General installation section
+;
+
+[DefaultInstall.NT]
+CopyFiles = @vcbt.sys
+Addreg    = vcbt.AddReg
+
+[vcbt.AddReg]
+HKLM, System\CurrentControlSet\Control\Class\{71A27CDD-812A-11D0-BEC7-08002BE2092F}, UpperFilters, 0x00010008, vcbt
+
+;
+; Service installation section
+;
+
+[DefaultInstall.NT.Services]
+AddService = vcbt, , vcbt.Service.Install, vcbt.EventLog.Install
+
+[vcbt.Service.Install]
+DisplayName    = %service_desc%
+ServiceType    = 1
+StartType      = 0
+ErrorControl   = 1
+ServiceBinary  = %12%\vcbt.sys
+LoadOrderGroup = "PnP Filter"
+AddReg = vcbt.Service.AddReg
+
+[vcbt.Service.AddReg]
+HKR, "Parameters", "BatchUpdateJournalMetaData", 0x00010001, 0x00000001
+HKR, "Parameters", "DisableUMAPFlush", 0x00010001, 0x00000001
+HKR, "Parameters", "DiskCopyDataDisabled", 0x00010001, 0x00000001
+
+[vcbt.EventLog.Install]
+AddReg = vcbt.EventLog.AddReg
+
+[vcbt.EventLog.AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\drivers\vcbt.sys"
+HKR,,TypesSupported,0x00010001,7
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+vcbt.sys=1
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+
+;
+; Uninstall Section
+;
+
+[DefaultUninstall]
+DelReg = vcbt.DelReg
+
+[DefaultUninstall.Services]
+DelService = vcbt
+
+[vcbt.DelReg]
+HKLM, System\CurrentControlSet\Control\Class\{71A27CDD-812A-11D0-BEC7-08002BE2092F}, UpperFilters, 0x00018002, vcbt
+
+[Strings]
+SaaSame="SaaSaMe Ltd."
+service_desc = "Volume Change Block Tracking Filter Driver"
+ClassName=""
+DiskName="VCBT Source Disk"

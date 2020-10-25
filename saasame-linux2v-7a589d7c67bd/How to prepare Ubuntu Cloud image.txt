@@ -1,0 +1,41 @@
+
+1.) Mount the disk on another linux and append the following in /etc/cloud/cloud.cfg
+
+#cloud-config
+ssh_pwauth: True
+password: passw0rd
+chpasswd: { expire: False }
+
+You also need to set the 
+
+disable_root: false
+
+lock_passwd: False
+
+2.) boot up the image. After first time boot up, please do following:
+
+sudo passwd root
+.............................................
+vi /etc/ssh/sshd_config
+PermitRootLogin yes
+//service sshd restart
+.............................................
+Make sure 'root' should login with SSH
+
+sudo apt-get remove --auto-remove cloud-init
+sudo apt-get remove --auto-remove open-iscsi
+
+{Install what you need}
+
+fstrim -av
+shutdown -P now
+
+3.) After system shutdown.
+Shrink your disk with compression (smaller disk size, takes longer to shrink, performance impact on slower systems):
+qemu-img convert -O qcow2 -c image.qcow2_backup image.qcow2
+
+
+
+
+ 
+

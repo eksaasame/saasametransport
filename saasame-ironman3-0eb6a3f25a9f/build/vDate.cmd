@@ -1,0 +1,1 @@
+cscript vDate.vbs //Nologo

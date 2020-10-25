@@ -1,0 +1,163 @@
+
+;-------------------------------------------------------------------------
+; VM3D.inf --
+;  VMware SVGA 3D Accelerator setup file
+;
+; Copyright (c) 1993-2009, Microsoft Corporation
+; Copyright 1999-2015 VMware, Inc.  All rights reserved.
+;-------------------------------------------------------------------------
+
+; The DriverVer month and day must be in a two digit format
+[Version]
+Signature   = "$WINDOWS NT$"
+Provider    = %CompanyName%
+ClassGUID   = {4D36E968-E325-11CE-BFC1-08002BE10318}
+Class       = Display
+DriverVer   = 07/15/2015,8.15.01.0032
+CatalogFile = vm3d.cat
+
+[SourceDisksNames]
+1 = %DiskID%
+
+[SourceDisksFiles]
+vm3dmp.sys = 1
+vm3dum.dll = 1
+vm3dum_10.dll = 1
+vm3dgl.dll = 1
+
+vm3dum64.dll = 1
+vm3dum64_10.dll = 1
+vm3dgl64.dll = 1
+
+
+[DestinationDirs]
+DefaultDestDir = 11
+VM3D_Miniport = 12
+VM3D_Display_X86 = 11
+VM3D_Display_AMD64 = 11
+VM3D_Display_WOW64 = 16425
+
+[Manufacturer]
+%CompanyName% = VMware, NTx86.6.0, NTamd64.6.0
+
+; Windows Vista x86 and later
+[VMware.NTx86.6.0]
+
+
+
+
+
+; Windows Vista x64 and later
+[VMware.NTamd64.6.0]
+
+%SVGA% = VM3D_AMD64, PCI\VEN_15AD&DEV_0405&SUBSYS_040515AD&REV_00
+%SVGA% = VM3D_AMD64, PCI\VEN_15AD&DEV_0405&SUBSYS_00000000&REV_00
+
+
+[VMware]
+; pre-Vista is not supported by this driver
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+[VM3D_X86]
+FeatureScore = F6
+Include = msdv.inf
+CopyFiles = VM3D_Miniport, VM3D_Display_X86
+AddReg = VM3D_SoftwareDeviceSettings_X86
+AddReg = VM3D_SoftwareDeviceSettings_Common
+RegisterDlls = VM3D_RegisterDlls
+
+[VM3D_AMD64]
+FeatureScore = F6
+Include = msdv.inf
+CopyFiles = VM3D_Miniport, VM3D_Display_AMD64, VM3D_Display_WOW64
+AddReg = VM3D_SoftwareDeviceSettings_AMD64
+AddReg = VM3D_SoftwareDeviceSettings_Common
+RegisterDlls = VM3D_AMD64RegisterDlls
+
+[VM3D_Miniport]
+vm3dmp.sys
+
+[VM3D_Display_X86]
+vm3dum.dll,,,0x00004000     ; COPYFLG_IN_USE_TRY_RENAME
+vm3dum_10.dll,,,0x00004000  ; COPYFLG_IN_USE_TRY_RENAME
+vm3dgl.dll,,,0x00004000     ; COPYFLG_IN_USE_TRY_RENAME
+
+[VM3D_Display_AMD64]
+vm3dum64.dll,,,0x00004000      ; COPYFLG_IN_USE_TRY_RENAME
+vm3dum64_10.dll,,,0x00004000   ; COPYFLG_IN_USE_TRY_RENAME
+vm3dgl64.dll,,,0x00004000      ; COPYFLG_IN_USE_TRY_RENAME
+
+[VM3D_Display_WOW64]
+vm3dum.dll,,,0x00004000     ; COPYFLG_IN_USE_TRY_RENAME
+vm3dum_10.dll,,,0x00004000  ; COPYFLG_IN_USE_TRY_RENAME
+vm3dgl.dll,,,0x00004000     ; COPYFLG_IN_USE_TRY_RENAME
+
+[VM3D_X86.Services]
+AddService = vm3dmp, 0x00000002, VM3D_Service_Inst, VM3D_EventLog_Inst
+
+[VM3D_AMD64.Services]
+AddService = vm3dmp, 0x00000002, VM3D_Service_Inst, VM3D_EventLog_Inst
+
+[VM3D_Service_Inst]
+ServiceType = 1
+StartType = 3
+ErrorControl = 0
+LoadOrderGroup = Video
+ServiceBinary = %12%\vm3dmp.sys
+
+[VM3D_EventLog_Inst]
+AddReg = VM3D_EventLog_AddReg
+
+[VM3D_EventLog_AddReg]
+HKR, , EventMessageFile, 0x00020000, "%SystemRoot%\System32\IoLogMsg.dll;%SystemRoot%\System32\drivers\vm3dmp.sys"
+HKR, , TypesSupported, 0x00010001, 7
+
+[VM3D_SoftwareDeviceSettings_X86]
+HKR,, InstalledDisplayDrivers, %REG_MULTI_SZ%, vm3dum, vm3dum_10
+HKR,, UserModeDriverName, %REG_MULTI_SZ%, vm3dum.dll, vm3dum_10.dll
+HKR,, OpenGLDriverName, %REG_MULTI_SZ%, vm3dgl.dll
+HKR,, OpenGLVersion, %REG_DWORD%, 1
+HKR,, OpenGLFlags, %REG_DWORD%, 3
+
+[VM3D_SoftwareDeviceSettings_AMD64]
+HKR,, InstalledDisplayDrivers, %REG_MULTI_SZ%, vm3dum64, vm3dum64_10, vm3dum, vm3dum_10
+HKR,, UserModeDriverName, %REG_MULTI_SZ%, vm3dum64.dll, vm3dum64_10.dll
+HKR,, UserModeDriverNameWow, %REG_MULTI_SZ%, vm3dum.dll, vm3dum_10.dll
+HKR,, OpenGLDriverName, %REG_MULTI_SZ%, vm3dgl64.dll
+HKR,, OpenGLVersion, %REG_DWORD%, 1
+HKR,, OpenGLFlags, %REG_DWORD%, 3
+HKR,, OpenGLDriverNameWow, %REG_MULTI_SZ%, vm3dgl.dll
+HKR,, OpenGLVersionWow, %REG_DWORD%, 1
+HKR,, OpenGLFlagsWow, %REG_DWORD%, 3
+
+[VM3D_SoftwareDeviceSettings_Common]
+HKR,, VgaCompatible, %REG_DWORD%, 0
+HKR,, DefaultSettings.XResolution, %REG_DWORD%, 800
+HKR,, DefaultSettings.YResolution, %REG_DWORD%, 600
+HKR,, DefaultSettings.BitsPerPel, %REG_DWORD%, 32
+
+[VM3D_RegisterDlls]
+11,,vm3dum.dll
+11,,vm3dum_10.dll
+
+[VM3D_AMD64RegisterDlls]
+11,,vm3dum64.dll
+11,,vm3dum64_10.dll
+16425,,vm3dum.dll
+16425,,vm3dum_10.dll
+
+[VMwarePathInfo]
+OriginalInfSourcePath = %1%
+
+[Strings]
+REG_SZ        = 0x00000000
+REG_MULTI_SZ  = 0x00010000
+REG_EXPAND_SZ = 0x00020000
+REG_BINARY    = 0x00000001
+REG_DWORD     = 0x00010001
+
+DiskID = "VMware Tools"
+CompanyName = "VMware, Inc."
+SVGA = "VMware SVGA 3D"

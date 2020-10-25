@@ -1,0 +1,12 @@
+thrift-0.9.2 --gen cpp:cob_style IronMan.thrift
+thrift-0.9.2 --gen csharp:serial,nullable IronMan.thrift
+thrift-0.9.2 --gen js:jquery IronMan.thrift
+
+thrift-0.9.2 --gen cpp:cob_style Promise.thrift
+thrift-0.9.2 --gen csharp:serial,nullable Promise.thrift
+thrift-0.9.2 --gen java Promise.thrift
+
+thrift-0.9.3 --gen cpp:cob_style promise_mgmt.thrift
+thrift-0.9.3 --gen cpp::cob_style ironman_image_op.thrift
+thrift-0.9.3 --gen cpp:cob_style saasame.thrift
+thrift-0.9.3 -r --gen php saasame.thrift

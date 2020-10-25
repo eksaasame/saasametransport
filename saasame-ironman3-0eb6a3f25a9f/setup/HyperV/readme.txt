@@ -1,0 +1,56 @@
+Copy Hyper-V Intergration Services Setup Package into "C:\ProgramData\Transport\HyperV" folder with following hierarchy...
+
+\support
+	\amd64
+		\WdfCoInstaller01009.dll
+		\Windows5.x-HyperVIntegrationServices-x64.msi
+		\Windows5.x-HyperVIntegrationServices-x64.xml
+		\Windows6.2-HyperVIntegrationServices-x64.cab
+		\Windows6.x-HyperVIntegrationServices-x64.cab
+		\Windows6.x-HyperVIntegrationServices-x64.xml
+		\WindowsServer2003.WindowsXP-KB943295-x64-CHS.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-CHT.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-DEU.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-ENU.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-ESN.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-FRA.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-ITA.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-JPN.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-KOR.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-PTB.exe
+		\WindowsServer2003.WindowsXP-KB943295-x64-RUS.exe
+		\kmdf.inf
+		\setup.exe
+		\en-US
+			\setup.exe.mui
+	\x86
+		\WdfCoInstaller01009.dll
+		\Windows5.x-HyperVIntegrationServices-x86.msi
+		\Windows5.x-HyperVIntegrationServices-x86.xml
+		\Windows6.2-HyperVIntegrationServices-x86.cab
+		\Windows6.x-HyperVIntegrationServices-x86.cab
+		\Windows6.x-HyperVIntegrationServices-x86.xml
+		\WindowsServer2003-KB943295-x86-CHS.exe
+		\WindowsServer2003-KB943295-x86-CHT.exe
+		\WindowsServer2003-KB943295-x86-CSY.exe
+		\WindowsServer2003-KB943295-x86-DEU.exe
+		\WindowsServer2003-KB943295-x86-ENU.exe
+		\WindowsServer2003-KB943295-x86-ESN.exe
+		\WindowsServer2003-KB943295-x86-FRA.exe
+		\WindowsServer2003-KB943295-x86-HUN.exe
+		\WindowsServer2003-KB943295-x86-ITA.exe
+		\WindowsServer2003-KB943295-x86-JPN.exe
+		\WindowsServer2003-KB943295-x86-KOR.exe
+		\WindowsServer2003-KB943295-x86-NLD.exe
+		\WindowsServer2003-KB943295-x86-PLK.exe
+		\WindowsServer2003-KB943295-x86-PTB.exe
+		\WindowsServer2003-KB943295-x86-PTG.exe
+		\WindowsServer2003-KB943295-x86-RUS.exe
+		\WindowsServer2003-KB943295-x86-SVE.exe
+		\WindowsServer2003-KB943295-x86-TRK.exe
+		\kmdf.inf
+		\setup.exe
+		\en-US
+			\setup.exe.mui
+
+Copy run-install.cmd into x86 and amd64 folders.

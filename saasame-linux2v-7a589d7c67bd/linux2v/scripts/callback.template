@@ -1,0 +1,306 @@
+
+export PATH="$PATH:/bin:/sbin"
+
+declare -a release_files=( /etc/SuSE-release /etc/redhat-release /etc/os-release /etc/lsb-release )
+os_family="UNKNOWN"
+for release_file in "${release_files[@]}"; do
+	if [ -f $release_file ]; then
+		r=$(cat $release_file | sed 's/ //g' | egrep -i 'CentOS|RedHat' | wc -l)
+		u=$(cat $release_file | egrep -i 'Debian|Ubuntu' | wc -l)
+		s=$(cat $release_file | egrep -i 'SUSE|SLES' | wc -l)
+		if [ $r -gt 0 ] ; then
+			os_family="RedHat"
+		elif [ $u -gt 0 ] ; then
+			os_family="Ubuntu"
+		elif [ $s -gt 0 ] ; then
+			os_family="SuSE"
+		fi
+		break
+	fi
+done
+eths=( $(ip link show | grep -oP 'e[a-z0-9]+:\s') )
+retry=6
+while [ ${#eths[@]} -eq 0 ] && [ $retry -gt 0 ] ; do
+		sleep 5
+		eths=( $(ip link show | grep -oP 'e[a-z0-9]+:\s') )
+		retry=$[$retry-1]
+		echo "retry ($retry)......"
+done
+
+echo "[ip link show]"
+echo -e "$(ip link show)"
+echo "[eths]"
+echo -e "${eths[@]}"
+echo "os family : $os_family"
+
+eths2=( $(ip -o link |sed 's/: <.*link\///g'|sed -e 's/loopback//g' -e 's/ether//g' -e 's/brd//g' | awk '{print $2 ":"}'))
+macs=( $(ip -o link |sed 's/: <.*link\///g'|sed -e 's/loopback//g' -e 's/ether//g' -e 's/brd//g' | awk '{print $3}'))
+
+echo "[eths2]"
+echo -e "${eths2[@]}"
+
+echo "[macs]"
+echo -e "${macs[@]}"
+
+get_mac() {
+num=${#eths2[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${eths2[i]}" = "$1" ] ; then
+		echo ${macs[i]}
+	fi
+done
+}
+
+get_ip () {
+num=${#mac_addresses[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${mac_addresses[i]}" = "$1" ] ; then
+		echo ${ip_addresses[i]}
+	fi
+done
+}
+
+get_submask () {
+num=${#mac_addresses[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${mac_addresses[i]}" = "$1" ] ; then
+		echo ${submasks[i]}
+	fi
+done
+}
+
+get_submask2 () {
+num=${#mac_addresses[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${mac_addresses[i]}" = "$1" ] ; then
+		echo ${submasks2[i]}
+	fi
+done
+}
+
+get_gateway () {
+num=${#mac_addresses[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${mac_addresses[i]}" = "$1" ] ; then
+		echo ${gateways[i]}
+	fi
+done
+}
+
+get_dns1 () {
+num=${#mac_addresses[@]}
+for (( i =0 ; i < num; i++ )); do
+	if [ "${mac_addresses[i]}" = "$1" ] ; then
+		echo ${dns1[i]}
+	fi
+done
+}
+
+if [ "$os_family" == "RedHat" ]; then
+	ifcfgs=( $(find /etc/sysconfig/network-scripts/ifcfg-e* | xargs grep -l TYPE=Ethernet) )
+	for ifcfg in "${ifcfgs[@]}"; do
+		if [ -d "/backup2v" ]; then
+			$(mv -f $ifcfg "/backup2v/*")
+		else
+			$(rm -f $ifcfg)
+		fi
+	done
+	for eth in "${eths[@]}"; do
+		ifcfg="/etc/sysconfig/network-scripts/ifcfg-${eth%:*}"	
+		echo ${ifcfg}
+		echo "TYPE=Ethernet" > $ifcfg
+		if [ "$(get_ip $(get_mac ${eth}))" = "" ] ; then
+			echo "BOOTPROTO=dhcp" >> $ifcfg
+        else
+		    echo "BOOTPROTO=static" >> $ifcfg
+			echo "IPADDR=$(get_ip $(get_mac ${eth}))" >> $ifcfg
+			echo "NETMASK=$(get_submask $(get_mac ${eth}))" >> $ifcfg
+			if [ "$(get_gateway $(get_mac ${eth}))" != "" ] ; then
+				echo "GATEWAY=$(get_gateway $(get_mac ${eth}))" >> $ifcfg
+			fi
+			if [ "$(get_dns1 $(get_mac ${eth}))" != "" ] ; then
+				echo "DNS1=$(get_dns1 $(get_mac ${eth}))" >> $ifcfg
+			fi			
+		fi	
+		echo "DEFROUTE=yes" >> $ifcfg
+		echo "IPV4_FAILURE_FATAL=no" >> $ifcfg
+		echo "IPV6INIT=yes" >> $ifcfg
+		echo "IPV6_AUTOCONF=yes" >> $ifcfg
+		echo "IPV6_DEFROUTE=yes" >> $ifcfg
+		echo "IPV6_FAILURE_FATAL=no" >> $ifcfg
+		echo "NAME=${eth%:*}" >> $ifcfg
+		echo "UUID=$(cat /proc/sys/kernel/random/uuid)" >> $ifcfg
+		echo "DEVICE=${eth%:*}" >> $ifcfg
+		echo "ONBOOT=yes" >> $ifcfg
+		echo "PEERDNS=yes" >> $ifcfg
+		echo "PEERROUTES=yes" >> $ifcfg
+		echo "IPV6_PEERDNS=yes" >> $ifcfg
+		echo "IPV6_PEERROUTES=yes" >> $ifcfg
+		echo "IPV6_PRIVACY=no" >> $ifcfg
+	done
+	service NetworkManager stop
+	chkconfig NetworkManager off
+	service network restart
+
+elif [ "$os_family" == "SuSE" ]; then
+	for eth in "${eths[@]}"; do
+		ifcfg="/etc/sysconfig/network/ifcfg-${eth%:*}"
+		echo ${ifcfg}
+		if [ -f $ifcfg ]; then
+			if [ -d "/backup2v" ]; then
+				$(cp -f $ifcfg "/backup2v/ifcfg-${eth%:*}")
+			fi
+		fi
+		echo "TYPE=Ethernet" > $ifcfg
+		if [ "$(get_ip $(get_mac ${eth}))" = "" ] ; then
+			echo "BOOTPROTO=dhcp" >> $ifcfg
+        else
+		    echo "BOOTPROTO=static" >> $ifcfg
+			echo "IPADDR=$(get_ip $(get_mac ${eth}))" >> $ifcfg
+			echo "NETMASK=$(get_submask $(get_mac ${eth}))" >> $ifcfg
+			if [ "$(get_gateway $(get_mac ${eth}))" != "" ] ; then
+				echo "GATEWAY=$(get_gateway $(get_mac ${eth}))" >> $ifcfg
+			fi
+			if [ "$(get_dns1 $(get_mac ${eth}))" != "" ] ; then
+				echo "DNS1=$(get_dns1 $(get_mac ${eth}))" >> $ifcfg
+			fi			
+		fi	
+		echo "DEFROUTE=yes" >> $ifcfg
+		echo "IPV4_FAILURE_FATAL=no" >> $ifcfg
+		echo "IPV6INIT=yes" >> $ifcfg
+		echo "IPV6_AUTOCONF=yes" >> $ifcfg
+		echo "IPV6_DEFROUTE=yes" >> $ifcfg
+		echo "IPV6_FAILURE_FATAL=no" >> $ifcfg
+		echo "NAME=${eth%:*}" >> $ifcfg
+		echo "UUID=$(cat /proc/sys/kernel/random/uuid)" >> $ifcfg
+		echo "DEVICE=${eth%:*}" >> $ifcfg
+		echo "ONBOOT=yes" >> $ifcfg
+		echo "PEERDNS=yes" >> $ifcfg
+		echo "PEERROUTES=yes" >> $ifcfg
+		echo "IPV6_PEERDNS=yes" >> $ifcfg
+		echo "IPV6_PEERROUTES=yes" >> $ifcfg
+		echo "IPV6_PRIVACY=no" >> $ifcfg
+	done
+	service network restart
+	for eth in "${eths[@]}"; do
+		ifup ${eth%:*}
+	done
+	
+elif [ "$os_family" == "Ubuntu" ]; then
+
+	cloudinit="/etc/netplan/50-cloud-init.yaml"
+	if [ -f $cloudinit ]; then
+		if [ -d "/backup2v" ]; then
+			$(cp -f $cloudinit "/backup2v/50-cloud-init.yaml")
+		fi
+		echo "# This file is generated from information provided by" > $cloudinit
+		echo "# the datasource.  Changes to it will not persist across an instance." >> $cloudinit
+		echo "# To disable cloud-init's network configuration capabilities, write a file" >> $cloudinit
+		echo "# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:" >> $cloudinit
+		echo "# network: {config: disabled}" >> $cloudinit
+		echo "network:" >> $cloudinit
+		echo "    ethernets:" >> $cloudinit
+		for eth in "${eths[@]}"; do
+			echo "        ${eth%:*}:" >> $cloudinit
+			if [ "$(get_ip $(get_mac ${eth}))" = "" ] ; then
+				echo "            addresses: []" >> $cloudinit
+				echo "            dhcp4: true" >> $cloudinit
+				echo "            optional: true" >> $cloudinit
+			else
+			    echo "            dhcp4: no" >> $cloudinit
+			    echo "            addresses: [$(get_ip $(get_mac ${eth}))/$(get_submask2 $(get_mac ${eth}))]" >> $cloudinit
+				if [ "$(get_gateway $(get_mac ${eth}))" != "" ] ; then
+					echo "gateway4: $(get_gateway $(get_mac ${eth}))" >> $cloudinit
+				fi	
+				if [ "$(get_dns1 $(get_mac ${eth}))" != "" ] ; then
+				    echo "nameservers:" >> $cloudinit
+					echo "    addresses: [$(get_dns1 $(get_mac ${eth}))]" >> $cloudinit
+				fi	
+			fi	
+			dhcp4: no
+		done
+		echo "    version: 2" >> $cloudinit
+		declare -a netplan_commands=( "netplan generate" "netplan apply" )
+		for cmd in "${netplan_commands[@]}"; do
+			${cmd}
+		done
+	else
+		interfaces="/etc/network/interfaces"
+		if [ -d "/backup2v" ]; then
+			$(cp -f $interfaces "/backup2v/interfaces")
+		fi
+		echo "# The loopback network interface" > $interfaces
+		echo "auto lo" >> $interfaces
+		echo "iface lo inet loopback" >> $interfaces
+		echo "" >> $interfaces
+		echo "# The primary network interface" >> $interfaces
+		for eth in "${eths[@]}"; do
+			echo "auto ${eth%:*}" >> $interfaces		
+			if [ "$(get_ip $(get_mac ${eth}))" = "" ] ; then
+				echo "iface ${eth%:*} inet dhcp" >> $interfaces
+			else
+				echo "iface ${eth%:*} inet static" >> $interfaces				
+				echo "address $(get_ip $(get_mac ${eth}))" >> $interfaces
+				echo "netmask $(get_submask $(get_mac ${eth}))" >> $interfaces
+				if [ "$(get_gateway $(get_mac ${eth}))" != "" ] ; then
+					echo "gateway $(get_gateway $(get_mac ${eth}))" >> $interfaces
+				fi
+				if [ "$(get_dns1 $(get_mac ${eth}))" != "" ] ; then
+					echo "dns-nameservers $(get_dns1 $(get_mac ${eth}))" >> $interfaces
+				fi
+			fi	
+			echo "" >> $interfaces
+		done
+	fi
+	declare -a finish_commands=( "service network-manager stop" "update-rc.d -f NetworkManager remove" "service networking restart" "ufw disable" )
+	for cmd in "${finish_commands[@]}"; do
+		${cmd}
+	done
+fi
+
+echo "[ip addr]"
+echo -e "$(ip addr)"
+echo "[iptables -L –n]"
+echo -e "$(iptables -L –n)"
+echo "[ip rule show]"
+echo -e "$(ip rule show)"
+echo "[ip route show table local]"
+echo -e "$(ip route show table local)"
+echo "[ip route show table main]"
+echo -e "$(ip route show table main)"
+echo "[ip route show table default]"
+echo -e "$(ip route show table default)"
+
+REMOVE_SCRIPT_PATH="/etc/runonce.d/run/remove_excluded.sh"
+if [ -f "$REMOVE_SCRIPT_PATH" ]; then
+	OUTPUT=`"$REMOVE_SCRIPT_PATH"`
+    echo -e "$OUTPUT"
+fi
+
+if [ ${#urls[@]} -gt 0 ]; then
+	echo "[callback urls]"
+	begin=`date +%s`
+	let running=`date +%s`-begin
+	while [ $running -le $timeout ]; do
+		for url in "${urls[@]}"
+		do
+			response=$(curl --insecure --write-out %{http_code} --connect-timeout 3 --silent --output /dev/null $url)
+			echo "Response : $response ($url)" 
+			if [ $response -eq 200 ] || [ $response -eq 202 ]; then
+			   let running=timeout+1
+			   break
+			fi
+			response=$(wget --spider -S -t1 -T3 "${url}" --no-check-certificate 2>&1 | grep "HTTP/" | awk '{print $2}')
+			echo "Response : $response ($url)"
+			if [ $response -eq 200 ] || [ $response -eq 202 ]; then
+			   let running=timeout+1
+			   break
+			fi
+			let running=`date +%s`-begin
+			if [ $running -gt $timeout ]; then
+				break
+			fi
+			sleep 1
+		done
+	done
+fi

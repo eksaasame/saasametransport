@@ -1,0 +1,95 @@
+
+; VMP.INF
+;
+; Copyright (c) 1998-2011, Microsoft Corporation.
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=SCSIAdapter
+ClassGUID={4D36E97B-E325-11CE-BFC1-08002BE10318}
+Provider=%SAASAME%
+DriverVer=09/22/2018,6.0.6000.16386
+CatalogFile=vmp.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[Manufacturer]
+%SAASAME%=SAASAME, NT$ARCH$
+
+[SAASAME.NT$ARCH$]
+%VMPDeviceDesc%=VMP_Device, %rootstr%
+
+[VMP_Device]
+CopyFiles=@vmp.sys
+
+[VMP_Device.HW]
+AddReg = VMP_Device_AddReg
+
+[VMP_Device_AddReg]
+HKR, "ScsiPort", "NeedsSystemShutdownNotification", 0x00010001, 1
+
+[VMP_Device.Services]
+AddService = vmp, %SPSVCINST_ASSOCSERVICE%, VMP_Service_Inst
+
+[SourceDisksNames.$ARCH$]
+1 = %DiskId1%,,,
+
+[SourceDisksFiles.$ARCH$]
+vmp.sys = 1,
+
+;
+;--- VMP_Device Coinstaller installation ------
+;
+[DestinationDirs]
+VMP_Device_CoInstaller_CopyFiles = 11
+
+[VMP_Device.CoInstallers]
+AddReg=VMP_Device_CoInstaller_AddReg
+CopyFiles=VMP_Device_CoInstaller_CopyFiles
+
+[VMP_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[VMP_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[SourceDisksFiles.$ARCH$]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1,  ; make sure the number matches with SourceDisksNames
+
+[VMP_Device.Wdf]
+KmdfService = vmp, VMP_Device_wdfsect
+
+[VMP_Device_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[VMP_Service_Inst]
+DisplayName    = %VMPDeviceDesc%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_BOOT_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\vmp.sys
+LoadOrderGroup = SCSI Miniport
+AddReg         = pnpsafe_isa_addreg
+
+[pnpsafe_isa_addreg]
+HKR, "Parameters\PnpInterface", "1",    %REG_DWORD%,  0x00000001
+;;;HKR, "Parameters", "DebugLevel",        %REG_DWORD%,  0x000000ff
+
+[Strings]
+SAASAME        = "SaaSaMe"
+SCSIClassName  = "SCSI and RAID controllers"
+VMPDeviceDesc  = "SaaSaMe StorPort Virtual Adapter"
+DiskId1        = "Virtual Miniport Device Installation Disk #1"
+rootstr        = "root\vmp"
+
+;*******************************************
+;Handy macro substitutions (non-localizable)
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START     = 0
+SERVICE_ERROR_NORMAL   = 1
+
+REG_DWORD              = 0x00010001
+REG_BINARY             = 0x00000001
+REG_SZ                 = 0x00000000

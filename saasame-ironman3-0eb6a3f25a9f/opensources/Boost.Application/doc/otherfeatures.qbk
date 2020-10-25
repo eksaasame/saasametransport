@@ -1,0 +1,27 @@
+[/
+    Copyright 2013 Renato Tegon Forti
+    Distributed under the Boost Software License, Version 1.0.
+    (See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+/]
+
+
+
+[section:other_features Other Features]
+
+
+[section Single Instance Feature] 
+
+Some applications should only have a single instance running on a given operating system, Boost.Application provides a means to easily achieve this, as:
+
+User need define a unique identity to application. To do this the user need generate a [@http://www.boost.org/doc/libs/1_54_0/libs/uuid/ Boost.Uuid].
+
+Optionally, the user can define a callback that will handle if a new instance of application should continue or exit. 
+
+If this callback this is not set the default behavior is terminate. 
+
+[import ../example/limit_single_instance_callback.cpp]
+[lsic]
+
+[endsect]
+
+[endsect]

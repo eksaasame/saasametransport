@@ -1,0 +1,1 @@
+http://iamwtf.googlecode.com/svn/trunk/Include/Resources/resource.rc

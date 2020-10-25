@@ -1,0 +1,42 @@
+...............................................
+Prepare Environment on Ubuntu 16.04
+...............................................
+
+sudo apt-get update
+sudo apt-get install bzip2
+sudo apt-get install libjemalloc1
+sudo apt-get install redis-tools
+sudo apt-get install redis-server
+sudo apt-get install kpartx
+
+........................
+Version 16.04
+........................
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get update
+sudo apt-get install python3.6
+or 
+sudo add-apt-repository ppa:fkrull/deadsnakes
+sudo apt-get update
+sudo apt-get install python3.6
+
+........................
+Version 16.10 or later
+........................
+sudo apt-get install python3.6
+
+
+...............................................
+How to generate linux2v_1.7.2-2_amd64.deb
+...............................................
+sudo apt-get install alien
+tar zxf linux2v_rpms-1.7.2.el7.x86_64.tar.gz
+cd linux2v_rpms-1.7.2
+sudo alien --to-deb --scripts linux2v-1.7.2-1.x86_64.rpm
+
+...............................................
+How to install linux2v_1.7.2-2_amd64.deb
+...............................................
+sudo dpkg -i linux2v_1.7.2-2_amd64.deb
+
+

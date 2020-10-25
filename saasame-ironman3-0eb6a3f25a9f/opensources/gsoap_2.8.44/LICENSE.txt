@@ -1,0 +1,2 @@
+The soapcpp2 and wsdl2h tools are not for resale or distribution.
+Copyright (C) 2000-2015 Robert A. van Engelen, Genivia, Inc.

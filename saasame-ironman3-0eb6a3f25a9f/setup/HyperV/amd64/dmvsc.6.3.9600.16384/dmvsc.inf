@@ -1,0 +1,131 @@
+;/*++
+;
+;Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;Module Name:
+;
+;    dmvsc.inf
+;
+;Abstract:
+;
+;    INF file for installing the VM Dynamic Memory VSC driver.
+;
+; Installation Notes:
+;
+;    Using Devcon: Type "devcon dp_add dmvsc.inf" to install
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4D36E97D-E325-11CE-BFC1-08002BE10318}
+Provider=%MSFT%
+
+;
+; Comment CatalogFile for CBB, the ';' will be removed when makefile.inc 
+; creates the INF file locally.
+;
+CatalogFile=dmvsc.cat
+DriverVer=06/21/2006,6.3.9600.16384
+
+[DestinationDirs]
+Drivers_Dir = 12
+System_Dir = 11
+
+[SourceDisksNames]
+1 = %DiskId1%
+
+[SourceDisksFiles]
+dmvsc.sys = 1
+dmvscres.dll = 1
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%StdMfg%=Standard,NT.5.2,NTamd64.5.2.0x0000001,NTamd64.5.2.0x0000002,NTamd64.5.2.0x0000003,NTamd64.6.0
+
+; Block installation of unspecified older versions (e.g. Windows 2000, XP)
+[Standard]
+%DynMemVsc.DeviceDesc_NULL%=DynMemDriver_NULL, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+; Allow installation of 5.2 (Win2k3 Server, XP Pro x64, Windows Home Server)
+[Standard.NT.5.2]
+%DynMemVsc.DeviceDesc%=DynMemDriver, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+; Block installation of 5.2 Workstation - 0x0000001 (XP Pro x64)
+[Standard.NTamd64.5.2.0x0000001]
+%DynMemVsc.DeviceDesc_NULL%=DynMemDriver_NULL, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+; Allow installation of 5.2 Domain Controller - 0x0000002
+[Standard.NTamd64.5.2.0x0000002]
+%DynMemVsc.DeviceDesc%=DynMemDriver, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+; Allow installation of 5.2 Server - 0x0000003
+[Standard.NTamd64.5.2.0x0000003]
+%DynMemVsc.DeviceDesc%=DynMemDriver, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+; Allow installation of 6.0 (Windows Vista / Win2k8 Server)
+[Standard.NTamd64.6.0]
+%DynMemVsc.DeviceDesc%=DynMemDriver, vmbus\{525074DC-8985-46e2-8057-A307DC18A502}
+
+[DynMemDriver.NT]
+CopyFiles=Drivers_Dir
+CopyFiles=System_Dir
+
+[Drivers_Dir]
+dmvsc.sys
+
+[System_Dir]
+dmvscres.dll
+
+;-------------- Service installation
+
+[DynMemDriver.NT.Services]
+AddService = dmvsc, %SPSVCINST_ASSOCSERVICE%, DynMemDriver_Service_Inst, dmvsc_EventLog_Inst
+
+[DynMemDriver_NULL.Services]
+AddService = ,%SPSVCINST_ASSOCSERVICE%  ; null service install
+
+
+; -------------- Driver install sections
+
+[DynMemDriver_Service_Inst]
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\dmvsc.sys
+
+
+[dmvsc_EventLog_Inst]
+AddReg = dmvsc_EventLog_AddReg
+
+[dmvsc_EventLog_AddReg]
+HKR,,EventMessageFile,0x00020000,"%%SystemRoot%%\System32\IoLogMsg.dll;%%SystemRoot%%\System32\dmvscres.dll"
+HKR,,TypesSupported,0x00010001,7
+
+; -------------- Uninstallation sections
+[DefaultUninstall.Services]
+DelService = dmvsc,0x00000200
+
+[DefaultUninstall]
+DelFiles = Drivers_Dir
+DelFiles = System_Dir
+
+
+[Strings]
+;
+;Non-Localizable
+;
+SPSVCINST_ASSOCSERVICE= 0x00000002
+MSFT = "Microsoft"
+StdMfg = "Microsoft"
+DiskId1 = "Microsoft Hyper-V Dynamic Memory Installation Disk #1"
+;
+;Localizable
+;
+DynMemVsc.DeviceDesc       = "Microsoft Hyper-V Dynamic Memory"
+DynMemVsc.DeviceDesc_NULL  = "Microsoft Hyper-V Dynamic Memory (not supported)"

@@ -1,0 +1,1 @@
+call .\upx391w\upx.exe --lzma --best --ultra-brute .\Release-Static\update.exe

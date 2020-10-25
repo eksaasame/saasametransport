@@ -1,0 +1,128 @@
+
+source /usr/local/linux2v/bin/activate
+cd /root/linux2v
+sh deploy/uncompile.sh
+
+source /usr/local/linux2v/bin/activate
+cd /root/linux2v
+sh deploy/compile.sh
+cd /root
+sh linux2v/deploy/buildbuilder.sh
+cd /root/linux2v/deploy/makerpm
+tar zxf linux2v_rpms-1.7.36.el7.x86_64.tar.gz
+cd linux2v_rpms-1.7.36 && ./install.sh
+
+alien --to-deb --scripts linux2v-1.7.36-1.x86_64.rpm
+
+cd /root
+
+journalctl -u linux2v > /root/linux2v.log
+
+linux2v list_jobs /etc/linux2v/linux2v.ini
+
+- `HISTORY.md`
+- `linux2v/__init__.py`
+- `deploy/makerpm/linux2v.spec`c
+
+sudo apt update
+sudo apt install bzip2
+sudo apt install libjemalloc1
+sudo apt install redis-tools
+sudo apt install redis-server
+sudo apt install kpartx
+sudo apt install python3.6
+apt-get install grub-pc
+apt-get install fatresize
+...........................................................
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get update
+sudo apt-get install python3.6
+or 
+sudo add-apt-repository ppa:fkrull/deadsnakes
+sudo apt-get update
+sudo apt-get install python3.6
+............................................................
+
+sudo apt autoremove
+
+sudo dpkg -i linux2v_1.7.9-2_amd64.deb
+
+https://www.fullstackpython.com/blog/install-redis-use-python-3-ubuntu-1604.html
+
+sudo apt remove cloud-init
+sudo apt purge cloud-init
+sudo apt remove open-iscsi
+
+#!/bin/bash
+
+systemctl stop apt-daily.service
+systemctl kill --kill-who=all apt-daily.service
+
+# wait until `apt-get updated` has been killed
+while ! (systemctl list-units --all apt-daily.service | fgrep -q dead)
+do
+  sleep 1;
+done
+
+how to disable apt-daily.timer
+$ systemctl stop apt-daily.timer
+$ systemctl disable apt-daily.timer
+$ systemctl mask apt-daily.service
+$ systemctl daemon-reload
+check current status
+$ systemctl status apt-daily.timer
+$ systemctl status apt-daily.service
+
+sudo dpkg -i linux2v_1.7.36-2_amd64.deb
+rm linux2v_1.7.36-2_amd64.deb
+systemctl stop linux2v
+
+fstrim -av
+systemctl hibernate
+
+Quote:
+Originally Posted by Grisen  
+Does anyone here know how to disable the update check when logging on to a Ubuntu-machine through SSH? It's pretty annoying to have to wait for this.....
+The scripts are executed by update-motd. You should find what you need to edit/remove in /etc/update-motd.d/. 
+
+
+Method Two
+If you can disable auto-update system-wide, you can add the following info in /etc/apt/apt.conf.d/10periodic.
+$ sudo -e /etc/apt/apt.conf.d/10periodic 
+APT::Periodic::Unattended-Upgrade "0";
+
+To create a swap partition after an Ubuntu installation create an empty partition that should have no holes. You can then format this partition with
+
+sudo mkswap /dev/sdx
+replacing sdx with your partition. Mount this partition as swap with
+
+sudo swapon -U UUID
+where UUID is that of your /dev/sdx as read from this
+
+blkid /dev/sdx
+Bind your new swap in /etc/fstab by adding this line:
+
+UUID=xxx    none    swap    sw      0   0
+If you want to use your swap for hibernating then you need to update the UUID in /etc/initramfs-tools/conf.d/resume with this content RESUME=UUID=xxx. Don't forget to sudo update-initramfs -u.
+
+sudo apt-get install alien
+tar zxf linux2v_rpms-1.7.7.el7.x86_64.tar.gz
+cd linux2v_rpms-1.7.7
+sudo alien --to-deb --scripts linux2v-1.7.7-1.x86_64.rpm
+sudo dpkg -i linux2v_1.7.7-2_amd64.deb
+dpkg -r linux2v
+dpkg -p linux2v
+..................................................................
+
+/etc/cloud/cloud.cfg
+#cloud-config
+ssh_pwauth: True
+password: passw0rd
+chpasswd: { expire: False }
+
+.............................................
+vi /etc/ssh/sshd_config
+PermitRootLogin yes
+
+//service sshd restart
+.............................................

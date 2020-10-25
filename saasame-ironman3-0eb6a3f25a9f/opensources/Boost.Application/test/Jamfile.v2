@@ -1,0 +1,152 @@
+#
+#          Copyright Renato Tegon Forti 2011 - 2013.
+# Distributed under the Boost Software License, Version 1.0.
+#    (See accompanying file LICENSE_1_0.txt or copy at
+#          http://www.boost.org/LICENSE_1_0.txt)
+#
+
+# For more information, see http://www.boost.org
+
+# bring in rules for testing
+import testing ;
+import os ;
+import path ;
+
+path-constant TEST_DIR : $(BOOST_ROOT)/bin.v2/libs/application/test ;
+
+if [ os.name ] = SOLARIS
+{
+  lib socket ;
+  lib nsl ;
+}
+else if [ os.name ] = NT
+{
+  lib ws2_32 ;
+  lib mswsock ;
+}
+else if [ os.name ] = HPUX
+{
+  lib ipv6 ;
+}
+
+project
+   : source-location .
+   : requirements
+        <include>../../..
+        <include>../../../../type_index
+   # windows
+
+   # msvc
+      <toolset>msvc:<define>_SCL_SECURE_NO_WARNINGS
+      <toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
+      <toolset>msvc:<define>_CRT_SECURE_NO_WARNINGS
+      <toolset>msvc:<define>_CRT_SECURE_NO_DEPRECATE
+      <toolset>msvc:<define>_SCL_SECURE_NO_WARNINGS
+ 
+   # linux
+      <target-os>linux:<linkflags>"-ldl" 
+      
+   # mingw, cygwin
+      <os>NT:<define>_WIN32_WINNT=0x0501
+      <os>NT,<toolset>gcc:<library>ws2_32
+      <os>NT,<toolset>gcc:<library>mswsock
+      <os>NT,<toolset>gcc-cygwin:<define>__USE_W32_SOCKETS
+   #  <os>NT,<toolset>gcc:<linkflags>"-ldl" 
+  
+   # solaris     
+      <os>SOLARIS:<library>socket
+      <os>SOLARIS:<library>nsl
+      
+   # hpux  
+      <os>HPUX,<toolset>gcc:<define>_XOPEN_SOURCE_EXTENDED
+      <os>HPUX:<library>ipv6
+
+   # gcc
+      <toolset>gcc:<cxxflags>-fno-strict-aliasing  # avoids strict aliasing violations in other Boost components
+	
+   # use dynamic libs
+   # <define>BOOST_ALL_DYN_LINK
+   # <define>BOOST_LIB_DIAGNOSTIC
+	  
+   # others
+      <link>shared:<define>BOOST_ALL_DLL      
+      <library>/boost/system//boost_system
+      <library>/boost/program_options//boost_program_options
+      <library>/boost/filesystem//boost_filesystem
+      <library>/boost/date_time//boost_date_time
+      <library>/boost/thread//boost_thread
+      <library>/boost/test//boost_test_exec_monitor
+      <threading>multi
+
+      ;
+{
+
+
+   test-suite application
+      : 
+      #
+      # application foundation
+      #
+      # [ run aspect_map_test.cpp ] --> TODO, fix, rmoved to test travis
+      # 
+      [ run signal_binder_test.cpp ]
+      [ run handler_test.cpp ]
+      [ run launch_test.cpp ]
+      [ run ensure_single_instance_test.cpp ]
+      [ run global_context_test.cpp ]
+      #
+      #
+	  
+      #
+      # translation unit test
+      #
+      [ run tunit_test.cpp myapp.cpp ]
+      #
+      #
+
+      #
+      # common application
+      #
+      [ run simple_common_application_test.cpp ]
+      #
+      #
+
+      #
+      # server application
+      #
+      [ run simple_server_application_test.cpp ]
+      #
+      #
+
+      #
+      # aspects
+      #
+      [ run args_aspect_test.cpp ]
+      [ run path_aspect_test.cpp ]
+      #
+      #
+
+      #
+      # Ensuring that examples build and run
+      #
+      [ compile ../example/simple_application.cpp ]
+      [ compile ../example/path.cpp ]
+      [ compile ../example/simple_application_with_global_context.cpp ]
+      [ compile ../example/wait_for_termination_request.cpp ]
+      [ compile ../example/my_own_wait_for_termination_request.cpp ]
+      [ compile ../example/termination_handler.cpp ]
+      [ compile ../example/termination_handler_with_global_context.cpp ]
+      [ compile ../example/my_own_termination_handler.cpp ]
+      [ compile ../example/limit_single_instance.cpp ]
+      [ compile ../example/simple_server_application.cpp ]
+      # [ compile ../example/simple_server_application_with_auto_handler.cpp ]
+      # [ compile ../example/simple_server_application_with_auto_handler_and_global_context.cpp ]
+      [ run ../example/setup/windows/setup.cpp : : : <build>no <target-os>windows:<build>yes ]
+      #
+      #
+
+      #  eof
+      ;
+      #
+}
+      

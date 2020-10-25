@@ -1,0 +1,58 @@
+﻿ENG,CHT,CHS
+SMTP Setting Verification,SMTP 設定驗證,SMTP 设置验证
+This is sending test message from SaaSaMe Transport Server.,這是從芝麻開雲 Transport 伺服器發送測試消息。,这是从芝麻开云 Transport 服务器发送测试消息。
+Transport Information,Transport 伺服器資訊,Transport 服务器信息
+Hostname,來源主機名稱,来源主机名
+Source,來源,来源
+Target,目標,目标
+Address,地址,地址
+Type,類型,类型
+Host Information,來源主機資訊,来源主机名
+Packer Type,Packer 類型,Packer 类型
+OS Name,作業系統,操作系统
+Host Address,來源主機地址,来源主机地址
+Disk,磁碟,磁盘
+Cloud Disk Information,複製磁碟資訊,复制磁盘信息
+Replication Workload Configuration,複製設定,复制设定
+Job ID,工作 ID,执行程序 ID
+Job Start at,序開始時間,程序开始时间
+Snapshot Number,保留快照數量,保留快照数量
+Packer Thread,Packer 讀取命令,Packer 读取命令
+Loader Thread,複製寫入命令,复制写入命令
+Loader Trigger,開始複製寫入,开始复制写入
+Export Path,磁碟複製檔案儲存路徑,磁盘复制文件保存路径
+Export Type,磁碟複製檔案類型,磁盘复制文件类型
+New Replication Created,成功建立複製程序,成功建立复制程序
+Recover Type,還原執行類型,恢复执行类型
+OS Type,作業系統,操作系统
+Instance Information,還原執行資訊,恢复执行信息
+Instance Hostname,還原主機名稱,恢复主机名
+Flavor,虛擬硬體規格,虚拟硬件规格
+Security Groups,安全群組,安全组
+Hypervisor / Region,虛擬伺服器/地區,虚拟服务器/地区
+NIC,網路卡,网络卡
+Recover Cloud Type,目標還原雲平台類型,目标恢复云平台类型
+Administrator Password,管理員密碼,管理员密码
+The Recovery Instance is Ready,目標還原主機回報已成功完成系統啟動,目标恢复主机系统启动
+Daily Replication Information,每日複製程序資訊,每日复制程序信息
+Daily Recovery Information,每日還原程序資訊,每日恢复程序信息
+Source Server,來源伺服器,来源服务器
+Target Server,目標伺服器,目标服务器
+Cloud Type,雲平台類型,云平台类型
+Snapshot Count,快照數量,快照数量
+Create Time,創建時間,创造时间
+Delete Time,刪除時間,删除时间
+Status,狀態,状态
+Disk Size,磁碟大小,磁盘大小
+Recovery Type,還原類型,恢复类型
+Job Status,工作狀態,执行状态
+Time,時間,时间
+SaaSaMe Replication&Recovery Daily Report,芝麻開雲複製程序與還原程序每日報告,芝麻开云复制程序與還原類型每日报告
+No Replication Information,沒有複製資訊,没有复制信息
+No Recovery Information,沒有還原資訊,沒有恢复信息
+Daily Backup File Information,每日備份文件信息,每日备份文件信息
+Name,文件名,文件名
+Size,文件大小,文件大小
+Type,文件類型,文件类型
+Last modified,最後修改,最后修改
+SaaSaMe Daily Backup Report,芝麻開雲每日備份報告,芝麻开云每日备份报告

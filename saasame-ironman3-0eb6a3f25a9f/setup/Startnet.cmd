@@ -1,0 +1,2 @@
+Wpeinit 
+wpeutil DisableFirewall

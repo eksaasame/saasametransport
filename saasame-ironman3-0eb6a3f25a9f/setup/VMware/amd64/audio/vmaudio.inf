@@ -1,0 +1,141 @@
+; vmaudio.inf
+;
+; VMware Virtual Sound Driver INF for Windows
+;
+; (c) Copyright 1999 Microsoft
+; (c) Modifications Copyright 2005-2008 VMware, Inc.
+;
+
+[Version]
+Signature="$Windows NT$"
+Class=MEDIA
+ClassGUID={4d36e96c-e325-11ce-bfc1-08002be10318}
+provider=%VMWARE%
+DriverVer =04/21/2009,5.10.0.3506
+CatalogFile = vmaudio.cat
+
+[Manufacturer]
+%MfgName%=VMWARE, NTx86, NTia64, NTamd64
+
+[SourceDisksNames]
+1 = %DiskID%
+
+[SourceDisksFiles]
+vmaudio.sys = 1
+
+[VMware]
+%VMAUDIO.DeviceDesc%=VMAUDIO,PCI\VEN_1274&DEV_1371&SUBSYS_13711274
+
+;; Mechanism for excluding drivers from the "Add New Hardware" list.
+[ControlFlags]
+
+ExcludeFromSelect = *
+
+[VMWARE.NTx86]
+%VMAUDIO.DeviceDesc%=VMAUDIO,PCI\VEN_1274&DEV_1371&SUBSYS_13711274
+
+[VMWARE.NTamd64]
+%VMAUDIO.DeviceDesc%=VMAUDIO,PCI\VEN_1274&DEV_1371&SUBSYS_13711274
+
+[VMWARE.NTia64]
+
+[W_VMAUDIO.Interface.Wave]
+AddReg=W_VMAUDIO.Interface.Wave.AddReg
+
+[W_VMAUDIO.Interface.Wave.AddReg]
+HKR,,FriendlyName,,%W_VMAUDIO.Wave.szPname%
+HKR,,CLSID,,%Proxy.CLSID%
+
+[W_VMAUDIO.Interface.Topology]
+AddReg=W_VMAUDIO.Interface.Topo.AddReg
+
+;; warning!! must be "Topo" because "Topology" is too long
+[W_VMAUDIO.Interface.Topo.AddReg]
+HKR,,FriendlyName,,%W_VMAUDIO.Topology.szPname%
+
+[VMAUDIO.AddReg]
+HKR,,AssociatedFilters,,"wdmaud,swmidi,redbook"
+HKR,,Driver,,vmaudio.sys
+HKR,,NTMPDriver,,"vmaudio.sys,sbemul.sys"
+
+HKR,Drivers,SubClasses,,"wave,midi,mixer"
+
+HKR,Drivers\wave\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\midi\wdmaud.drv, Driver,,wdmaud.drv
+HKR,Drivers\mixer\wdmaud.drv,Driver,,wdmaud.drv
+
+HKR,Drivers\wave\wdmaud.drv, Description,,%*VMAUDIO.DeviceDesc%
+HKR,Drivers\midi\wdmaud.drv, Description,,%*VMAUDIO.DeviceDesc%
+HKR,Drivers\mixer\wdmaud.drv,Description,,%*VMAUDIO.DeviceDesc%
+
+[DestinationDirs]
+VMAUDIO.CopyList         = 10,system32\drivers ; %SystemRoot%\system32\drivers
+
+[VMAUDIO.CopyList]
+vmaudio.sys
+
+;;**************** NT Install ****************
+
+[VMAUDIO.NTX86]
+Include=ks.inf, wdmaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration
+CopyFiles=VMAUDIO.CopyList
+AddReg=VMAUDIO.AddReg
+
+[VMAUDIO.NTX86.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Wave%,       W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_RENDER%,%KSNAME_Wave%,      W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_CAPTURE%,%KSNAME_Wave%,     W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Topology%,   W_VMAUDIO.Interface.Topology
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_Topology%,W_VMAUDIO.Interface.Topology
+
+[VMAUDIO.NTX86.Services]
+AddService = VMAUDIO,  0x00000002, VMAUDIO_Service_Inst
+
+[VMAUDIO.NTamd64]
+Include=ks.inf, wdmaudio.inf
+Needs=KS.Registration, WDMAUDIO.Registration
+CopyFiles=VMAUDIO.CopyList
+AddReg=VMAUDIO.AddReg
+
+[VMAUDIO.NTamd64.Interfaces]
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Wave%,       W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_RENDER%,%KSNAME_Wave%,      W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_CAPTURE%,%KSNAME_Wave%,     W_VMAUDIO.Interface.Wave
+AddInterface=%KSCATEGORY_AUDIO%,%KSNAME_Topology%,   W_VMAUDIO.Interface.Topology
+AddInterface=%KSCATEGORY_TOPOLOGY%,%KSNAME_Topology%,W_VMAUDIO.Interface.Topology
+
+[VMAUDIO.NTamd64.Services]
+AddService = VMAUDIO,  0x00000002, VMAUDIO_Service_Inst
+
+[VMAUDIO_Service_Inst]
+DisplayName    = %VMAUDIO.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\system32\drivers\vmaudio.sys
+
+
+[Strings]
+VMWARE="VMware"
+MfgName="VMware, Inc."
+CompanyName = "VMware, Inc."
+VMAUDIO.DeviceDesc="VMware VMaudio (VMAUDIO) (WDM)"
+*VMAUDIO.DeviceDesc="VMware VMaudio (VMAUDIO) (WDM)"
+W_VMAUDIO.Wave.szPname="VMware VMaudio"
+W_VMAUDIO.Topology.szPname="VMware VMaudio"
+DiskID = "VMware Tools"
+
+
+MediaCategories="SYSTEM\CurrentControlSet\Control\MediaCategories"
+
+Proxy.CLSID        ="{17CCA71B-ECD7-11D0-B908-00A0C9223196}"
+KSCATEGORY_AUDIO   ="{6994AD04-93EF-11D0-A3CC-00A0C9223196}"
+KSCATEGORY_RENDER  ="{65E8773E-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_CAPTURE ="{65E8773D-8F56-11D0-A3B9-00A0C9223196}"
+KSCATEGORY_TOPOLOGY="{DDA54A40-1E4C-11D1-A050-405705C10000}"
+
+KSNAME_Wave="Wave"
+KSNAME_Topology="Topology"
+
+VMAUDIO.SvcDesc = "VMware VMaudio (VMAUDIO) (WDM)"
